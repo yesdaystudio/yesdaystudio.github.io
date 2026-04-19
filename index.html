@@ -6,55 +6,49 @@
     <title>YesDay studio | Digitálne svadobné riešenia</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        :root { --cream: #f4f1ea; --gold: #d4af37; --dark: #1a1a1a; --white: #ffffff; }
+        :root { --cream: #f4f1ea; --gold: #d4af37; --dark: #1a1a1a; --white: #ffffff; --grey: #888; }
         * { box-sizing: border-box; }
         body { margin: 0; font-family: 'Montserrat', sans-serif; background-color: var(--cream); color: var(--dark); scroll-behavior: smooth; }
         
-        /* Navigation */
         nav { background: var(--white); padding: 20px; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: center; gap: 30px; }
         nav a { text-decoration: none; color: var(--dark); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
 
-        /* Header */
-        header { height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; margin-top: 60px; }
+        header { height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; margin-top: 60px; }
         header h1 { font-family: 'Playfair Display', serif; font-size: 4rem; margin: 0; letter-spacing: 5px; }
         header p { font-style: italic; color: #777; font-size: 1.2rem; }
 
-        /* Sections */
-        section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; text-align: center; }
-        h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 50px; }
+        section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; text-align: center; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
 
-        /* Portfolio Cards */
+        /* Portfolio & Pricing styles (same as before) */
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .card { background: var(--white); padding: 40px; border: 1px solid #eee; transition: 0.3s; display: flex; flex-direction: column; align-items: center; }
         .card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .card h3 { font-family: 'Playfair Display', serif; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; }
-        .card p { font-size: 0.9rem; color: #666; line-height: 1.6; margin-bottom: 20px; }
-        .card .btn-link { text-decoration: none; color: var(--gold); font-weight: bold; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+        .card .btn-link { text-decoration: none; color: var(--gold); font-weight: bold; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid var(--gold); }
 
-        /* Pricing */
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .price-box { background: var(--white); padding: 40px; border: 1px solid var(--gold); display: flex; flex-direction: column; }
-        .price-box h3 { letter-spacing: 3px; font-size: 1.2rem; }
-        .price { font-size: 2rem; font-family: 'Playfair Display', serif; margin: 20px 0; color: var(--dark); }
-        .price-box ul { list-style: none; padding: 0; text-align: left; font-size: 0.9rem; line-height: 2.2; flex-grow: 1; margin-bottom: 30px; }
-        .price-box ul li::before { content: "— "; color: var(--gold); }
+        .price-box { background: var(--white); padding: 40px; border: 1px solid var(--gold); }
+        .price { font-size: 2rem; font-family: 'Playfair Display', serif; margin: 20px 0; }
+        .price-box ul { list-style: none; padding: 0; text-align: left; font-size: 0.85rem; line-height: 2; }
 
-        /* Form Steps */
-        #booking-form { background: var(--white); padding: 40px; border-radius: 2px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 700px; margin: 0 auto; }
+        /* FORM STYLES */
+        #dotaznik { background: #fff; padding: 60px 20px; border-top: 1px solid #eee; }
+        #booking-form { max-width: 800px; margin: 0 auto; text-align: left; background: var(--white); padding: 40px; box-shadow: 0 10px 50px rgba(0,0,0,0.05); }
         .form-step { display: none; }
         .form-step.active { display: block; }
-        label { display: block; margin-top: 20px; font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #888; }
-        input, textarea, select { width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #eee; font-family: inherit; background: #fafafa; outline: none; transition: 0.3s; }
-        input:focus, textarea:focus { border-color: var(--gold); background: #fff; }
+        .step-indicator { font-size: 0.7rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: block; }
+        h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-top: 0; margin-bottom: 25px; border-bottom: 1px solid var(--cream); padding-bottom: 15px; }
+        label { display: block; margin-top: 20px; font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--grey); }
+        input, textarea, select { width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #eee; font-family: inherit; background: #fafafa; }
         .btn-group { margin-top: 40px; display: flex; gap: 15px; }
         button { padding: 15px 35px; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 0.7rem; font-weight: bold; transition: 0.3s; }
-        .btn-next { background: var(--dark); color: white; }
-        .btn-next:hover { background: var(--gold); }
+        .btn-next { background: var(--dark); color: white; flex-grow: 1; }
         .btn-prev { background: #f0f0f0; color: var(--dark); }
+        .checkbox-group { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 0.9rem; }
+        .checkbox-group input { width: auto; margin-top: 0; }
 
-        footer { padding: 80px 20px; background: var(--dark); color: white; text-align: center; }
-        footer .social-link { color: var(--gold); text-decoration: none; font-size: 1.2rem; display: block; margin-bottom: 20px; letter-spacing: 2px; }
-        footer p { font-size: 0.8rem; opacity: 0.6; letter-spacing: 1px; }
+        footer { padding: 60px 20px; background: var(--dark); color: white; text-align: center; }
+        footer a { color: var(--gold); text-decoration: none; }
     </style>
 </head>
 <body>
@@ -68,6 +62,144 @@
 
 <header>
     <h1>YES DAY</h1>
-    <h2 style="font-family: 'Montserrat'; font-weight: 300; letter-spacing: 8px; font-size: 1rem; margin-top: -10px;">STUDIO</h2>
-    <div style="width: 40px; height: 1px; background: var(--gold); margin: 30px 0;"></div>
-    <p>Vaša svadba
+    <h2 style="font-family: 'Montserrat'; font-weight: 300; letter-spacing: 8px; font-size: 0.9rem; margin-top: -10px;">STUDIO</h2>
+    <p>Vaša svadba v digitálnom štýle</p>
+</header>
+
+<section id="portfolio">
+    <h2>Inšpirujte sa</h2>
+    <div class="portfolio-grid">
+        <div class="card">
+            <h3>Diana & Anton</h3>
+            <p>Elegantný svadobný web s kompletným info pre hostí.</p>
+            <a href="https://yesdaystudio.github.io/diana-anton.github.io/" target="_blank" class="btn-link">Pozrieť web</a>
+        </div>
+        <div class="card"><h3>Minimalist Grey</h3><p>Čoskoro...</p></div>
+        <div class="card"><h3>Boho Wild</h3><p>Čoskoro...</p></div>
+    </div>
+</section>
+
+<section id="cennik" style="background: var(--white);">
+    <h2>Balíčky služieb</h2>
+    <div class="pricing-grid">
+        <div class="price-box"><h3>DIGI ŠTART</h3><div class="price">49€</div><ul><li>Web na 1 rok</li><li>RSVP formulár</li><li>QR kód</li></ul></div>
+        <div class="price-box" style="border-width: 2px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);"><h3>YESDAY KOMPLET</h3><div class="price">99€</div><ul><li>Všetko z Digi Štart</li><li>Grafika oznámenia</li><li>Tlačové PDF</li></ul></div>
+        <div class="price-box"><h3>PREMIUM</h3><div class="price">Individuálne</div><ul><li>Vlastná doména</li><li>Správa hostí</li><li>Tlačoviny</li></ul></div>
+    </div>
+</section>
+
+<section id="dotaznik">
+    <h2>Plánovací dotazník</h2>
+    <form id="booking-form">
+        <div class="form-step active">
+            <span class="step-indicator">Krok 1 z 7</span>
+            <h3>Kto ste vy?</h3>
+            <label>Meno a priezvisko nevesty</label><input type="text" name="nevesta">
+            <label>Meno a priezvisko ženícha</label><input type="text" name="zenich">
+            <label>Váš spoločný e-mail</label><input type="email" name="email">
+            <label>Telefónne číslo</label><input type="tel" name="tel">
+            <div class="btn-group"><button type="button" class="btn-next" onclick="nextStep(1)">Pokračovať</button></div>
+        </div>
+
+        <div class="form-step">
+            <span class="step-indicator">Krok 2 z 7</span>
+            <h3>Svadobný deň</h3>
+            <label>Dátum svadby</label><input type="date" name="datum">
+            <label>Miesto a čas obradu</label><textarea name="obrad" rows="2" placeholder="Názov, adresa a presný čas"></textarea>
+            <label>Miesto hostiny</label><textarea name="hostina" rows="2" placeholder="Názov a adresa"></textarea>
+            <label>Program dňa (orientačne)</label><textarea name="program" rows="4" placeholder="15:00 Obrad, 17:00 Hostina..."></textarea>
+            <div class="btn-group">
+                <button type="button" class="btn-prev" onclick="prevStep(0)">Späť</button>
+                <button type="button" class="btn-next" onclick="nextStep(2)">Pokračovať</button>
+            </div>
+        </div>
+
+        <div class="form-step">
+            <span class="step-indicator">Krok 3 z 7</span>
+            <h3>Hostia a RSVP</h3>
+            <label>Odhadovaný počet hostí</label><input type="number" name="pocet_hosti">
+            <label>Termín pre potvrdenie účasti (RSVP)</label><input type="date" name="rsvp_termin">
+            <label>Ubytovanie pre hostí</label><textarea name="ubytovanie" rows="2" placeholder="Info o možnostiach ubytovania"></textarea>
+            <div class="btn-group">
+                <button type="button" class="btn-prev" onclick="prevStep(1)">Späť</button>
+                <button type="button" class="btn-next" onclick="nextStep(3)">Pokračovať</button>
+            </div>
+        </div>
+
+        <div class="form-step">
+            <span class="step-indicator">Krok 4 z 7</span>
+            <h3>Tlačoviny</h3>
+            <label>Máte záujem o tlačené oznámenia?</label>
+            <select name="tlacoviny"><option>Áno</option><option>Nie</option><option>Iba digitálna forma</option></select>
+            <label>Aké ďalšie tlačoviny potrebujete?</label>
+            <div class="checkbox-group"><input type="checkbox"> Menovky</div>
+            <div class="checkbox-group"><input type="checkbox"> Menu karty</div>
+            <div class="checkbox-group"><input type="checkbox"> Zasadací poriadok</div>
+            <div class="checkbox-group"><input type="checkbox"> Etikety na víno/výslužky</div>
+            <div class="btn-group">
+                <button type="button" class="btn-prev" onclick="prevStep(2)">Späť</button>
+                <button type="button" class="btn-next" onclick="nextStep(4)">Pokračovať</button>
+            </div>
+        </div>
+
+        <div class="form-step">
+            <span class="step-indicator">Krok 5 z 7</span>
+            <h3>Vizuálna identita</h3>
+            <label>Štýl svadby</label>
+            <select name="styl"><option>Elegantný</option><option>Boho</option><option>Minimalistický</option><option>Tradičný</option><option>Iný</option></select>
+            <label>Vaše farby</label><input type="text" name="farby" placeholder="Napr. bordová a zlatá">
+            <label>Motto / Citát na oznámenie</label><textarea name="motto" rows="2"></textarea>
+            <div class="btn-group">
+                <button type="button" class="btn-prev" onclick="prevStep(3)">Späť</button>
+                <button type="button" class="btn-next" onclick="nextStep(5)">Pokračovať</button>
+            </div>
+        </div>
+
+        <div class="form-step">
+            <span class="step-indicator">Krok 6 z 7</span>
+            <h3>Vaša láska</h3>
+            <label>Váš príbeh (v krátkosti pre web)</label><textarea name="pribeh" rows="4"></textarea>
+            <label>Odkaz na zdieľaný priečinok s fotkami (Drive/Cloud)</label><input type="url" name="fotky">
+            <div class="btn-group">
+                <button type="button" class="btn-prev" onclick="prevStep(4)">Späť</button>
+                <button type="button" class="btn-next" onclick="nextStep(6)">Pokračovať</button>
+            </div>
+        </div>
+
+        <div class="form-step">
+            <span class="step-indicator">Krok 7 z 7</span>
+            <h3>Organizačné detaily</h3>
+            <label>Svadobné dary (vtipný text alebo info o peniazoch)</label><textarea name="dary" rows="2"></textarea>
+            <label>Deti a domáci miláčikovia na svadbe</label><input type="text" name="deti_pes">
+            <label>Dôležité osoby (svedkovia, rodičia - ak chcete uviesť)</label><textarea name="osoby" rows="2"></textarea>
+            <label>Iné dôležité informácie</label><textarea name="ine" rows="2"></textarea>
+            <div class="btn-group">
+                <button type="button" class="btn-prev" onclick="prevStep(5)">Späť</button>
+                <button type="button" class="btn-next" style="background: var(--gold);" onclick="alert('Hotovo! Dáta sú pripravené na odoslanie.')">Odoslať všetko</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+<footer>
+    <a href="https://www.instagram.com/yesdaystudio/" target="_blank">@yesdaystudio</a>
+    <p>&copy; 2024 YesDay studio</p>
+</footer>
+
+<script>
+    function nextStep(step) {
+        const steps = document.querySelectorAll('.form-step');
+        steps[step-1].classList.remove('active');
+        steps[step].classList.add('active');
+        document.getElementById('dotaznik').scrollIntoView({behavior: 'smooth'});
+    }
+    function prevStep(step) {
+        const steps = document.querySelectorAll('.form-step');
+        document.querySelector('.form-step.active').classList.remove('active');
+        steps[step].classList.add('active');
+        document.getElementById('dotaznik').scrollIntoView({behavior: 'smooth'});
+    }
+</script>
+
+</body>
+</html>
