@@ -121,12 +121,14 @@
         }
 
         .portfolio-grid,
-        .pricing-grid {
+        .pricing-grid,
+        .showcase-grid {
             display: grid;
             gap: 28px;
         }
 
-        .portfolio-grid {
+        .portfolio-grid,
+        .showcase-grid {
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         }
 
@@ -136,27 +138,32 @@
         }
 
         .card,
-        .price-box {
+        .price-box,
+        .showcase-card,
+        .contact-card {
             background: var(--white);
             border: 1px solid var(--border);
             transition: 0.3s ease;
         }
 
-        .card {
+        .card,
+        .showcase-card,
+        .contact-card {
             padding: 36px 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         .card:hover,
-        .price-box:hover {
+        .price-box:hover,
+        .showcase-card:hover,
+        .contact-card:hover {
             border-color: var(--gold);
             transform: translateY(-4px);
         }
 
         .card h3,
-        .price-box h3 {
+        .price-box h3,
+        .showcase-card h3,
+        .contact-card h3 {
             font-family: 'Playfair Display', serif;
             margin-top: 0;
             margin-bottom: 14px;
@@ -175,6 +182,7 @@
             border-bottom: 1px solid var(--gold);
             padding-bottom: 2px;
             margin-top: 12px;
+            display: inline-block;
         }
 
         .coming-soon {
@@ -192,6 +200,9 @@
             flex-direction: column;
             text-align: left;
             position: relative;
+            background: var(--white);
+            border: 1px solid var(--border);
+            transition: 0.3s ease;
         }
 
         .price-box.featured {
@@ -267,9 +278,81 @@
             background: #000;
         }
 
+        .portfolio-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .tab-button {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--dark);
+            padding: 12px 18px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .tab-button.active {
+            background: var(--dark);
+            color: var(--white);
+            border-color: var(--dark);
+        }
+
+        .portfolio-panel {
+            display: none;
+        }
+
+        .portfolio-panel.active {
+            display: block;
+        }
+
+        .showcase-card {
+            text-align: left;
+        }
+
+        .showcase-image {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: linear-gradient(135deg, #f8f5ef, #efe7d6);
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9a8b63;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .showcase-meta {
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .showcase-card p {
+            color: #666;
+            margin-bottom: 0;
+        }
+
         #dotaznik-sekcia {
             background: var(--white);
             padding: 85px 20px;
+            display: none;
+        }
+
+        #dotaznik-sekcia.visible {
+            display: block;
         }
 
         #booking-form-wrapper {
@@ -431,6 +514,39 @@
             display: none !important;
         }
 
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .contact-card {
+            text-align: center;
+        }
+
+        .contact-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-word;
+        }
+
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .instagram-link svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--gold);
+        }
+
         footer {
             padding: 60px 20px;
             background: var(--dark);
@@ -473,7 +589,8 @@
             }
 
             button,
-            .package-button {
+            .package-button,
+            .tab-button {
                 width: 100%;
             }
         }
@@ -484,8 +601,7 @@
 <nav>
     <a href="#portfolio">Portfólio</a>
     <a href="#cennik">Balíčky</a>
-    <a href="#dotaznik-sekcia">Dotazník</a>
-    <a href="https://www.instagram.com/yesdaystudio/" target="_blank">Instagram</a>
+    <a href="#kontakt">Kontakty</a>
 </nav>
 
 <header>
@@ -496,29 +612,93 @@
 </header>
 
 <section id="portfolio">
-    <h2>Inšpirujte sa</h2>
+    <h2>Portfólio</h2>
     <p class="section-intro">
-        Každý svadobný web tvoríme s dôrazom na estetiku, prehľadnosť a atmosféru vášho dňa.
-        Vyberte si štýl, ktorý vám je najbližší.
+        Ukážky našich svadobných riešení od webov až po pozvánky a QR kódy.
+        Sem si môžeš postupne dopĺňať svoje reálne práce.
     </p>
 
-    <div class="portfolio-grid">
-        <div class="card">
-            <h3>Diana &amp; Anton</h3>
-            <p>Elegantný svadobný web s kompletnými informáciami pre hostí v jemnom, nadčasovom štýle.</p>
-            <a href="https://yesdaystudio.github.io/diana-anton.github.io/" target="_blank" class="btn-link">Pozrieť web</a>
-        </div>
+    <div class="portfolio-tabs">
+        <button class="tab-button active" type="button" onclick="showPortfolioTab('weby', this)">Weby</button>
+        <button class="tab-button" type="button" onclick="showPortfolioTab('pozvanky', this)">Pozvánky</button>
+        <button class="tab-button" type="button" onclick="showPortfolioTab('qr', this)">QR kódy</button>
+    </div>
 
-        <div class="card">
-            <h3>Minimalist Grey</h3>
-            <p>Čistý dizajn zameraný na modernú typografiu, jednoduchosť a decentnú eleganciu.</p>
-            <span class="coming-soon">Už čoskoro</span>
-        </div>
+    <div id="portfolio-weby" class="portfolio-panel active">
+        <div class="showcase-grid">
+            <div class="showcase-card">
+                <div class="showcase-image">Náhľad webu</div>
+                <div class="showcase-meta">Svadobný web</div>
+                <h3>Diana &amp; Anton</h3>
+                <p>Elegantný svadobný web s kompletnými informáciami pre hostí v jemnom, nadčasovom štýle.</p>
+                <a href="https://yesdaystudio.github.io/diana-anton.github.io/" target="_blank" class="btn-link">Pozrieť web</a>
+            </div>
 
-        <div class="card">
-            <h3>Boho Wild</h3>
-            <p>Prírodné tóny, jemná romantika a uvoľnený vizuál pre svadby s boho atmosférou.</p>
-            <span class="coming-soon">Už čoskoro</span>
+            <div class="showcase-card">
+                <div class="showcase-image">Tvoj ďalší projekt</div>
+                <div class="showcase-meta">Svadobný web</div>
+                <h3>Minimalist Grey</h3>
+                <p>Priestor pre ďalší web v čistom modernom štýle. Sem potom doplníš reálny link aj screenshot.</p>
+                <span class="coming-soon">Už čoskoro</span>
+            </div>
+
+            <div class="showcase-card">
+                <div class="showcase-image">Tvoj ďalší projekt</div>
+                <div class="showcase-meta">Svadobný web</div>
+                <h3>Boho Wild</h3>
+                <p>Priestor pre ďalší web v romantickom boho štýle. Ideálne miesto na budúcu referenciu.</p>
+                <span class="coming-soon">Už čoskoro</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="portfolio-pozvanky" class="portfolio-panel">
+        <div class="showcase-grid">
+            <div class="showcase-card">
+                <div class="showcase-image">Náhľad pozvánky</div>
+                <div class="showcase-meta">PDF pozvánka</div>
+                <h3>Elegant Ivory</h3>
+                <p>Jemný luxusný dizajn s minimalistickou typografiou a decentnými zlatými detailmi.</p>
+            </div>
+
+            <div class="showcase-card">
+                <div class="showcase-image">Náhľad pozvánky</div>
+                <div class="showcase-meta">PDF pozvánka</div>
+                <h3>Modern Romance</h3>
+                <p>Moderné pozvánky s čistou kompozíciou a romantickým detailom pre elegantnú svadbu.</p>
+            </div>
+
+            <div class="showcase-card">
+                <div class="showcase-image">Náhľad pozvánky</div>
+                <div class="showcase-meta">PDF pozvánka</div>
+                <h3>Soft Botanical</h3>
+                <p>Prírodný a vzdušný vizuál s jemnými tónmi, vhodný pre boho a garden wedding štýl.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="portfolio-qr" class="portfolio-panel">
+        <div class="showcase-grid">
+            <div class="showcase-card">
+                <div class="showcase-image">QR ukážka</div>
+                <div class="showcase-meta">QR kód na web</div>
+                <h3>Klasický QR dizajn</h3>
+                <p>Minimalistické riešenie vhodné priamo na svadobnú pozvánku alebo samostatnú kartičku.</p>
+            </div>
+
+            <div class="showcase-card">
+                <div class="showcase-image">QR ukážka</div>
+                <div class="showcase-meta">QR kód na web</div>
+                <h3>Elegantná kartička</h3>
+                <p>QR kód umiestnený na samostatnej doplnkovej kartičke v rovnakom štýle ako pozvánka.</p>
+            </div>
+
+            <div class="showcase-card">
+                <div class="showcase-image">QR ukážka</div>
+                <div class="showcase-meta">QR kód na web</div>
+                <h3>Zladený svadobný set</h3>
+                <p>QR kód spracovaný ako súčasť celého vizuálu, aby všetky svadobné materiály pôsobili jednotne.</p>
+            </div>
         </div>
     </div>
 </section>
@@ -770,8 +950,34 @@
     </div>
 </section>
 
+<section id="kontakt">
+    <h2>Kontakty</h2>
+    <p class="section-intro">
+        Ak máš otázky alebo si chceš overiť detaily ešte pred objednávkou, ozvi sa nám.
+    </p>
+
+    <div class="contact-grid">
+        <div class="contact-card">
+            <div class="showcase-meta">E-mail</div>
+            <h3>Napíš nám</h3>
+            <a class="contact-link" href="mailto:info.yesdaystudio@gmail.com">info.yesdaystudio@gmail.com</a>
+        </div>
+
+        <div class="contact-card">
+            <div class="showcase-meta">Instagram</div>
+            <h3>Sleduj nás</h3>
+            <a class="instagram-link" href="https://www.instagram.com/yesdaystudio/" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5ZM17.5 6.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5Z"/>
+                </svg>
+                @yesdaystudio
+            </a>
+        </div>
+    </div>
+</section>
+
 <footer>
-    <a href="https://www.instagram.com/yesdaystudio/" target="_blank">@yesdaystudio</a>
+    <a href="https://www.instagram.com/yesdaystudio/" target="_blank" rel="noopener noreferrer">@yesdaystudio</a>
     <p>&copy; 2026 YesDay studio</p>
 </footer>
 
@@ -806,6 +1012,7 @@
     function selectPackage(packageName) {
         currentPackage = packageName;
 
+        document.getElementById('dotaznik-sekcia').classList.add('visible');
         document.getElementById('selected-package-text').textContent = packageName;
         document.getElementById('selected-package-input').value = packageName;
 
@@ -814,7 +1021,7 @@
 
         setTimeout(() => {
             scrollToQuestionnaire();
-        }, 100);
+        }, 120);
     }
 
     function goToStep(stepNumber) {
@@ -826,15 +1033,18 @@
             targetStep.classList.add('active');
         }
 
-        const step3Indicator = document.querySelector('#step3 .step-indicator');
-        const step3Title = document.querySelector('#step3 h3');
-
-        if (stepNumber === 3 && currentPackage === 'YesDay Mini') {
-            step3Indicator.textContent = 'Sekcia 3 zo 7';
-            step3Title.textContent = 'RSVP formulár';
-        }
-
         scrollToQuestionnaire();
+    }
+
+    function showPortfolioTab(tabName, button) {
+        const panels = document.querySelectorAll('.portfolio-panel');
+        const buttons = document.querySelectorAll('.tab-button');
+
+        panels.forEach(panel => panel.classList.remove('active'));
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        document.getElementById('portfolio-' + tabName).classList.add('active');
+        button.classList.add('active');
     }
 
     document.getElementById('booking-form').addEventListener('submit', function(event) {
@@ -851,6 +1061,7 @@
         this.reset();
         document.getElementById('selected-package-text').textContent = 'zatiaľ nevybraný';
         document.getElementById('selected-package-input').value = '';
+        document.getElementById('dotaznik-sekcia').classList.remove('visible');
         currentPackage = '';
         updateRsvpVisibility('');
         goToStep(1);
