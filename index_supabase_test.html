@@ -1527,7 +1527,7 @@
             return;
         }
 
-        alert('Ďakujeme! Dotazník bol odoslaný a uložený.');
+document.getElementById('thank-you-message').style.display = 'block';
         this.reset();
         document.getElementById('selected-package-text').textContent = 'zatiaľ nevybraný';
         document.getElementById('selected-package-input').value = '';
@@ -1539,6 +1539,19 @@
 
     updateRsvpVisibility('');
 </script>
+    <div id="thank-you-message" style="
+  display:none;
+  padding:40px;
+  text-align:center;
+  background:#f9f9f9;
+  border:1px solid #eee;
+  margin:40px auto;
+  max-width:700px;
+">
+  <h2>Ďakujeme 💛</h2>
+  <p>Váš dotazník bol úspešne odoslaný.</p>
+  <p>Ozveme sa vám čoskoro s ďalšími krokmi.</p>
+</div>
 
 </body>
 </html>
