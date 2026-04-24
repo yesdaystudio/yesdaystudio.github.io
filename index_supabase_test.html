@@ -1440,7 +1440,85 @@
         button.classList.add('active');
     }
 
-    document.getElementById('booking-form').addEventListener('submit', function(event) {
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+    const supabaseUrl = 'https://aqklpeluucktvniieess.supabase.co';
+    const supabaseKey = 'sb_publishable_ixIfhQ0f7B-KilKLMA74Qg_AvzMivyg';
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+    let currentPackage = '';
+
+    function updateRsvpVisibility(packageName) {
+        const rsvpFields = document.getElementById('rsvp-fields');
+        const noRsvpMessage = document.getElementById('no-rsvp-message');
+
+        if (packageName === 'YesDay Mini') {
+            rsvpFields.classList.add('hidden');
+            noRsvpMessage.classList.remove('hidden');
+        } else {
+            rsvpFields.classList.remove('hidden');
+            noRsvpMessage.classList.add('hidden');
+        }
+    }
+
+    function scrollToQuestionnaire() {
+        const section = document.getElementById('dotaznik-sekcia');
+        const nav = document.querySelector('nav');
+        const navHeight = nav ? nav.offsetHeight : 0;
+        const top = section.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+
+        window.scrollTo({
+            top: top,
+            behavior: 'smooth'
+        });
+    }
+
+    function selectPackage(packageName) {
+        currentPackage = packageName;
+
+        document.getElementById('dotaznik-sekcia').classList.add('visible');
+        document.getElementById('selected-package-text').textContent = packageName;
+        document.getElementById('selected-package-input').value = packageName;
+
+        updateRsvpVisibility(packageName);
+        goToStep(1);
+
+        setTimeout(() => {
+            scrollToQuestionnaire();
+        }, 120);
+    }
+
+    function goToStep(stepNumber) {
+        const steps = document.querySelectorAll('.form-step');
+        steps.forEach(step => step.classList.remove('active'));
+
+        const targetStep = document.getElementById('step' + stepNumber);
+        if (targetStep) {
+            targetStep.classList.add('active');
+        }
+
+        scrollToQuestionnaire();
+    }
+
+    function showPortfolioTab(tabName, button) {
+        const panels = document.querySelectorAll('.portfolio-panel');
+        const buttons = document.querySelectorAll('.tab-button');
+
+        panels.forEach(panel => panel.classList.remove('active'));
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        document.getElementById('portfolio-' + tabName).classList.add('active');
+        button.classList.add('active');
+    }
+
+    function getCheckedValues(name) {
+        return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+            .map(input => input.value)
+            .join(', ');
+    }
+
+    document.getElementById('booking-form').addEventListener('submit', async function(event) {
         event.preventDefault();
 
         const selectedPackage = document.getElementById('selected-package-input').value;
@@ -1450,7 +1528,72 @@
             return;
         }
 
-        alert('Ďakujeme! Váš dotazník pre balíček ' + selectedPackage + ' bol odoslaný.');
+        const clientPayload = {
+            status: 'New',
+            names: document.getElementById('couple-names').value,
+            email: document.getElementById('email').value,
+            wedding_date: document.getElementById('wedding-date').value || null,
+            package: selectedPackage,
+            language: 'SK',
+            style: document.getElementById('style-select').value,
+            color_preferences: document.getElementById('wedding-colors').value,
+            must_avoid: document.getElementById('dislikes').value,
+            inspiration_links: document.getElementById('inspirations').value,
+            notes: document.getElementById('extra-info').value
+        };
+
+        const { data: clientData, error: clientError } = await supabase
+            .from('clients')
+            .insert([clientPayload])
+            .select();
+
+        if (clientError) {
+            console.error('Client insert error:', clientError);
+            alert('Nepodarilo sa uložiť základné údaje. Skúsime to prosím ešte raz.');
+            return;
+        }
+
+        const clientId = clientData[0].id;
+
+        const briefPayload = {
+            client_id: clientId,
+            story: document.getElementById('website-texts').value,
+            venue_ceremony: document.getElementById('ceremony-place').value,
+            venue_reception: document.getElementById('party-place').value,
+            dress_code: getCheckedValues('sections').includes('dresscode') ? 'Áno, klient chce dress code sekciu.' : '',
+            gifts: getCheckedValues('sections').includes('dary') ? 'Áno, klient chce sekciu dary / wishlist.' : '',
+            accommodation: getCheckedValues('sections').includes('ubytovanie') ? 'Áno, klient chce ubytovanie.' : '',
+            transport: getCheckedValues('sections').includes('doprava') ? 'Áno, klient chce dopravu / parkovanie.' : '',
+            faq: getCheckedValues('sections'),
+            special_requests:
+                'Čas obradu: ' + document.getElementById('ceremony-time').value + '\n' +
+                'RSVP možnosti: ' + getCheckedValues('rsvp_options') + '\n' +
+                'Text na pozvánku: ' + document.getElementById('invite-text').value + '\n' +
+                'Počet pozvánok: ' + document.getElementById('invite-count').value + '\n' +
+                'Záujem o tlač: ' + document.getElementById('print-interest').value + '\n' +
+                'QR umiestnenie: ' + document.getElementById('qr-placement').value + '\n' +
+                'Doména: ' + document.getElementById('custom-domain').value + '\n' +
+                'Deadline: ' + document.getElementById('deadline').value + '\n' +
+                'Extra info: ' + document.getElementById('extra-info').value,
+            rsvp_needed: selectedPackage !== 'YesDay Mini',
+            rsvp_deadline: document.getElementById('deadline').value || null,
+            collect_meal_choice: getCheckedValues('rsvp_options').includes('meal_choice'),
+            collect_allergies: false,
+            collect_plus_one: getCheckedValues('rsvp_options').includes('guest_count'),
+            collect_kids: getCheckedValues('rsvp_options').includes('children')
+        };
+
+        const { error: briefError } = await supabase
+            .from('briefs')
+            .insert([briefPayload]);
+
+        if (briefError) {
+            console.error('Brief insert error:', briefError);
+            alert('Základné údaje sa uložili, ale brief sa neuložil. Skontroluj konzolu.');
+            return;
+        }
+
+        alert('Ďakujeme! Dotazník bol odoslaný a uložený.');
         this.reset();
         document.getElementById('selected-package-text').textContent = 'zatiaľ nevybraný';
         document.getElementById('selected-package-input').value = '';
@@ -1458,6 +1601,10 @@
         currentPackage = '';
         updateRsvpVisibility('');
         goToStep(1);
+    });
+
+    updateRsvpVisibility('');
+</script>
     });
 
     updateRsvpVisibility('');
