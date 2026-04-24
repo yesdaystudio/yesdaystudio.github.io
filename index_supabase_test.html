@@ -1552,7 +1552,16 @@
                 }
                 return;
             }
-
+await fetch('https://hook.eu1.make.com/c5ilc2vp59f3as7ttoxab539v5h8s5h1', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    client: clientPayload,
+    brief: briefPayload
+  })
+});
             this.reset();
 
             const formWrapper = document.getElementById('booking-form-wrapper');
