@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YesDay studio | Digitálne svadobné riešenia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --cream: #f4f1ea;
+            --gold: #d4af37;
+            --dark: #1a1a1a;
+            --white: #ffffff;
+            --grey: #888;
+            --light: #fafafa;
+            --border: #e9e9e9;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.96);
+            padding: 18px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+            backdrop-filter: blur(8px);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .hero {
+            min-height: 86vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 150px 20px 90px;
+            background:
+                radial-gradient(circle at top, rgba(212, 175, 55, 0.10), transparent 35%),
+                linear-gradient(180deg, #fcfaf5 0%, #f7f2e8 100%);
+        }
+
+        .hero-inner {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .hero-brand {
+            margin-bottom: 26px;
+        }
+
+        .hero-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.2rem);
+            letter-spacing: 5px;
+            line-height: 1;
+            color: var(--dark);
+        }
+
+        .hero-subbrand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            letter-spacing: 8px;
+            font-size: 0.92rem;
+            margin-top: 8px;
+            text-transform: uppercase;
+            color: var(--dark);
+        }
+
+        .hero-eyebrow {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 2.4px;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            line-height: 1.08;
+            letter-spacing: -0.5px;
+            margin: 0;
+            color: var(--dark);
+        }
+
+        .header-divider {
+            width: 56px;
+            height: 1px;
+            background: var(--gold);
+            margin: 28px auto;
+        }
+
+        .hero-lead {
+            max-width: 760px;
+            margin: 0 auto;
+            font-size: 1.08rem;
+            line-height: 1.9;
+            color: #5f5a52;
+        }
+
+        .hero-actions {
+            margin-top: 34px;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 220px;
+            padding: 15px 24px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            font-size: 0.74rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .hero-btn-primary {
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .hero-btn-primary:hover {
+            transform: translateY(-2px);
+            background: #000;
+        }
+
+        .hero-btn-secondary {
+            background: transparent;
+            color: var(--dark);
+            border-color: var(--border);
+        }
+
+        .hero-btn-secondary:hover {
+            transform: translateY(-2px);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        section {
+            padding: 85px 20px;
+            max-width: 1140px;
+            margin: 0 auto;
+            text-align: center;
+            scroll-margin-top: 110px;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 18px;
+        }
+
+        .section-intro {
+            max-width: 760px;
+            margin: 0 auto 45px;
+            color: #666;
+            font-size: 0.98rem;
+        }
+
+        .section-label {
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .section-heading {
+            max-width: 760px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-heading p:last-child {
+            color: #666;
+            font-size: 0.98rem;
+            margin: 0 auto;
+        }
+
+        .benefits {
+            padding: 110px 20px;
+            max-width: 1140px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            max-width: 1180px;
+            margin: 50px auto 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .benefit-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 32px 28px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+            margin-bottom: 14px;
+        }
+
+        .benefit-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin: 0 0 12px;
+            color: var(--dark);
+        }
+
+        .benefit-card p {
+            color: #5f5a52;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .portfolio-grid,
+        .pricing-grid,
+        .showcase-grid {
+            display: grid;
+            gap: 28px;
+        }
+
+        .portfolio-grid,
+        .showcase-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .pricing-grid {
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            align-items: stretch;
+        }
+
+        .card,
+        .price-box,
+        .showcase-card,
+        .contact-card,
+        .feature-box {
+            background: var(--white);
+            border: 1px solid var(--border);
+            transition: 0.3s ease;
+        }
+
+        .card,
+        .showcase-card,
+        .contact-card {
+            padding: 36px 30px;
+        }
+
+        .card:hover,
+        .price-box:hover,
+        .showcase-card:hover,
+        .contact-card:hover,
+        .feature-box:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        .card h3,
+        .price-box h3,
+        .showcase-card h3,
+        .contact-card h3,
+        .feature-box h4 {
+            font-family: 'Playfair Display', serif;
+            margin-top: 0;
+            margin-bottom: 14px;
+            font-size: 1.7rem;
+            border: none;
+            padding: 0;
+        }
+
+        .btn-link {
+            text-decoration: none;
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 2px;
+            margin-top: 12px;
+            display: inline-block;
+        }
+
+        .coming-soon {
+            font-size: 0.72rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 12px;
+            display: inline-block;
+        }
+
+        .portfolio-product {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 32px;
+            text-align: left;
+        }
+
+        .portfolio-product-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .portfolio-product-label,
+        .showcase-meta {
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .portfolio-product-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.6rem);
+            margin: 0 0 10px;
+        }
+
+        .portfolio-product-header p {
+            max-width: 720px;
+            color: #666;
+            margin: 0;
+        }
+
+        .product-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .secondary-link {
+            display: inline-block;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 0.76rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        .product-showcase-grid {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: 1.25fr 1fr 0.9fr;
+            align-items: start;
+        }
+
+        .feature-box {
+            padding: 22px;
+            height: 100%;
+        }
+
+        .feature-box h4 {
+            font-size: 1.5rem;
+        }
+
+        .feature-box p {
+            color: #666;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .feature-image {
+            width: 100%;
+            display: block;
+            border: 1px solid var(--border);
+            background: #f7f5ef;
+        }
+
+        .qr-box {
+            text-align: center;
+        }
+
+        .qr-box img {
+            width: 100%;
+            max-width: 230px;
+            background: white;
+            padding: 10px;
+            border: 1px solid var(--border);
+            display: block;
+            margin: 0 auto 18px;
+        }
+
+        .qr-caption {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .price-box {
+            padding: 36px 30px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            position: relative;
+            background: var(--white);
+            border: 1px solid var(--border);
+            transition: 0.3s ease;
+        }
+
+        .price-box.featured {
+            transform: scale(1.03);
+            border-width: 2px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            background: #fffcf5;
+        }
+
+        .package-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .package-intro {
+            color: #666;
+            min-height: 68px;
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            margin: 12px 0 20px;
+            text-align: left;
+        }
+
+        .price-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px;
+            font-size: 0.92rem;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .price-box ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .price-box ul li::before {
+            content: "—";
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+        }
+
+        .package-button {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            background: var(--dark);
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 22px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            transition: 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .package-button:hover { background: #000; }
+
+        .portfolio-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .tab-button {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--dark);
+            padding: 12px 18px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .tab-button.active {
+            background: var(--dark);
+            color: var(--white);
+            border-color: var(--dark);
+        }
+
+        .portfolio-panel { display: none; }
+        .portfolio-panel.active { display: block; }
+
+        .showcase-card { text-align: left; }
+
+        .showcase-image {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: linear-gradient(135deg, #f8f5ef, #efe7d6);
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9a8b63;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #dotaznik-sekcia {
+            background: var(--white);
+            padding: 85px 20px;
+            display: none;
+        }
+
+        #dotaznik-sekcia.visible { display: block; }
+
+        #booking-form-wrapper {
+            max-width: 860px;
+            margin: 0 auto;
+            text-align: left;
+            background: var(--white);
+            padding: 42px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+
+        .form-header { text-align: center; margin-bottom: 30px; }
+
+        .form-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            margin: 0 0 10px;
+            border: none;
+            padding: 0;
+        }
+
+        .form-header p {
+            font-size: 0.95rem;
+            color: var(--grey);
+            margin: 0;
+        }
+
+        .selected-package-banner {
+            background: #fffcf5;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            padding: 16px 18px;
+            margin-bottom: 25px;
+            font-size: 0.92rem;
+            color: #555;
+        }
+
+        .selected-package-banner strong { color: var(--dark); }
+
+        .form-step { display: none; }
+        .form-step.active { display: block; }
+
+        .step-indicator {
+            font-size: 0.7rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+            font-weight: 600;
+        }
+
+        .form-step h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--cream);
+            padding-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-top: 22px;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dark);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 13px 14px;
+            margin-top: 8px;
+            border: 1px solid var(--border);
+            font-family: inherit;
+            background: var(--light);
+            font-size: 0.95rem;
+            color: var(--dark);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 12px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            margin: 0;
+        }
+
+        .btn-group {
+            margin-top: 38px;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 15px 28px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-next {
+            background: var(--dark);
+            color: var(--white);
+            flex-grow: 1;
+        }
+
+        .btn-prev {
+            background: #f0f0f0;
+            color: var(--dark);
+        }
+
+        .btn-submit {
+            background: var(--gold);
+            color: var(--dark);
+            flex-grow: 1;
+        }
+
+        .package-note {
+            font-size: 0.85rem;
+            color: var(--grey);
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        .hidden { display: none !important; }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .contact-card { text-align: center; }
+
+        .contact-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-word;
+        }
+
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .instagram-link svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--gold);
+        }
+
+        footer {
+            padding: 60px 20px;
+            background: var(--dark);
+            color: var(--white);
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        @media (max-width: 980px) {
+            .product-showcase-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .price-box.featured { transform: none; }
+            #booking-form-wrapper { padding: 28px 22px; }
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                gap: 16px;
+                padding: 15px 12px;
+            }
+
+            nav a {
+                font-size: 0.7rem;
+                letter-spacing: 1.5px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 140px 20px 70px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.2rem, 10vw, 3.5rem);
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .hero-btn {
+                width: 100%;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-group { flex-direction: column; }
+
+            button,
+            .package-button,
+            .tab-button,
+            .secondary-link {
+                width: 100%;
+            }
+
+            .portfolio-product {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#portfolio">Portfólio</a>
+    <a href="#cennik">Balíčky</a>
+    <a href="#kontakt">Kontakty</a>
+</nav>
+
+<header class="hero">
+    <div class="hero-inner">
+        <div class="hero-brand">
+            <div class="hero-logo">YES DAY</div>
+            <div class="hero-subbrand">Studio</div>
+        </div>
+
+        <p class="hero-eyebrow">Digitálne svadobné riešenia v jednom zladenom štýle</p>
+        <h1>Svadobná pozvánka a web, ktoré do seba dokonale zapadajú</h1>
+        <div class="header-divider"></div>
+        <p class="hero-lead">
+            Prepojte krásu svadobnej pozvánky s výhodami moderného svadobného webu.
+            Vďaka jednému QR kódu budú mať vaši hostia všetky dôležité informácie vždy po ruke
+            a vy získate väčší prehľad, menej stresu a zladený výsledok.
+        </p>
+        <div class="hero-actions">
+            <a href="#portfolio" class="hero-btn hero-btn-primary">Pozrieť ukážky prác</a>
+            <a href="#cennik" class="hero-btn hero-btn-secondary">Zistiť ceny balíčkov</a>
+        </div>
+    </div>
+</header>
+
+<section class="benefits">
+    <div class="section-heading">
+        <p class="section-label">Prečo práve toto riešenie</p>
+        <h2>Prečo spojiť pozvánku a svadobný web?</h2>
+        <p>
+            Nekupujete si len pekný dizajn. Kupujete si pokojnejšiu organizáciu,
+            jasnejšiu komunikáciu s hosťami a zladený výsledok, ktorý pôsobí premyslene od začiatku až do konca.
+        </p>
+    </div>
+
+    <div class="benefits-grid">
+        <article class="benefit-card">
+            <div class="benefit-icon">📱</div>
+            <h3>Všetko dôležité v jednom QR kóde</h3>
+            <p>
+                Hostia naskenujú QR kód na pozvánke a okamžite sa dostanú ku všetkým dôležitým informáciám
+                — od harmonogramu až po praktické detaily.
+            </p>
+        </article>
+
+        <article class="benefit-card">
+            <div class="benefit-icon">✨</div>
+            <h3>Dokonalý vizuálny súlad</h3>
+            <p>
+                Pozvánka, svadobný web aj ďalšie výstupy môžu pôsobiť ako jeden premyslený celok.
+                Výsledok je elegantný, jednotný a zapamätateľný.
+            </p>
+        </article>
+
+        <article class="benefit-card">
+            <div class="benefit-icon">📋</div>
+            <h3>Menej chaosu okolo RSVP</h3>
+            <p>
+                Hostia potvrdia účasť jednoducho cez web a vy máte odpovede prehľadne na jednom mieste.
+            </p>
+        </article>
+
+        <article class="benefit-card">
+            <div class="benefit-icon">🌿</div>
+            <h3>Flexibilné riešenie bez zbytočného stresu</h3>
+            <p>
+                Ak sa niečo zmení, informácie na webe sa dajú upraviť rýchlo a bez potreby dotlače.
+            </p>
+        </article>
+    </div>
+</section>
+
+<section id="portfolio">
+    <h2>Portfólio</h2>
+    <p class="section-intro">
+        Ukážky ucelených svadobných riešení, kde prepájame dizajn pozvánky,
+        svadobný web a QR kód do jedného zladeného produktu.
+    </p>
+
+    <div class="portfolio-tabs">
+        <button class="tab-button active" type="button" onclick="showPortfolioTab('diana', this)">Diana &amp; Anton</button>
+        <button class="tab-button" type="button" onclick="showPortfolioTab('anna', this)">Anna &amp; Viktor</button>
+        <button class="tab-button" type="button" onclick="showPortfolioTab('lea', this)">Lea &amp; Jakub</button>
+        <button class="tab-button" type="button" onclick="showPortfolioTab('qr', this)">QR riešenia</button>
+    </div>
+
+    <div id="portfolio-diana" class="portfolio-panel active">
+        <div class="portfolio-product">
+            <div class="portfolio-product-header">
+                <div>
+                    <div class="portfolio-product-label">Kompletný svadobný set</div>
+                    <h3>Diana &amp; Anton</h3>
+                    <p>
+                        Jednotný vizuálny koncept pre svadobnú komunikáciu: tlačová a digitálna pozvánka,
+                        elegantný svadobný web, funkčný QR kód na jednoduché otvorenie stránky pre hostí
+                        a prehľadná klientska zóna s RSVP výstupom, v ktorej pár vidí odpovede hostí,
+                        počty dospelých a detí, ubytovanie aj poznámky na jednom mieste.
+                    </p>
+                </div>
+                <div class="product-links">
+                    <a href="https://yesdaystudio.github.io/diana-anton.github.io/" target="_blank" class="secondary-link">Otvoriť web</a>
+                    <a href="diana-anton-pozvanka.png" target="_blank" class="secondary-link">Pozrieť pozvánku</a>
+                    <a href="diana-anton-qr.png" target="_blank" class="secondary-link">Stiahnuť QR</a>
+                    <a href="https://yesdaystudio.github.io/diana-anton-dashboard-demo.html" target="_blank" class="secondary-link">Ukážka klientskej zóny</a>
+                </div>
+            </div>
+
+            <div class="product-showcase-grid">
+                <div class="feature-box">
+                    <div class="showcase-meta">Pozvánka</div>
+                    <img src="diana-anton-pozvanka.png" alt="Svadobná pozvánka Diana a Anton" class="feature-image" />
+                    <p>
+                        Luxusná minimalistická pozvánka s botanickou ilustráciou, jemnou typografiou
+                        a neutrálnou farebnosťou. Vhodná pre tlač aj digitálne zdieľanie.
+                    </p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="showcase-meta">Svadobný web</div>
+                    <h4>Diana &amp; Anton</h4>
+                    <p>
+                        Web slúži ako centrálny bod pre hostí – poskytuje informácie o dátume, mieste,
+                        harmonograme a ďalších dôležitých detailoch ku svadbe.
+                    </p>
+                    <a href="https://yesdaystudio.github.io/diana-anton.github.io/" target="_blank" class="btn-link">Pozrieť web Diana &amp; Anton</a>
+                </div>
+
+                <div class="feature-box qr-box">
+                    <div class="showcase-meta">QR kód na web</div>
+                    <img src="diana-anton-qr.png" alt="QR kód na svadobný web Diana a Anton" />
+                    <p class="qr-caption">
+                        Tento QR kód smeruje priamo na web Diana &amp; Anton.
+                        Po naskenovaní sa otvorí svadobná stránka:
+                        <br /><strong>yesdaystudio.github.io/diana-anton.github.io/</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="portfolio-anna" class="portfolio-panel">
+        <div class="portfolio-product">
+            <div class="portfolio-product-header">
+                <div>
+                    <div class="portfolio-product-label">Kompletný svadobný set</div>
+                    <h3>Anna &amp; Viktor</h3>
+                    <p>
+                        Elegantný château koncept v old money štýle: luxusná pozvánka,
+                        svadobný web s RSVP formulárom a QR kód, ktorý hostí privedie priamo na stránku.
+                    </p>
+                </div>
+                <div class="product-links">
+                    <a href="https://yesdaystudio.github.io/historic-castle---portfolio/#rsvp" target="_blank" class="secondary-link">Otvoriť web</a>
+                    <a href="anna-viktor-pozvanka.png" target="_blank" class="secondary-link">Pozrieť pozvánku</a>
+                    <a href="anna-viktor-qr.png" target="_blank" class="secondary-link">Stiahnuť QR</a>
+                </div>
+            </div>
+
+            <div class="product-showcase-grid">
+                <div class="feature-box">
+                    <div class="showcase-meta">Pozvánka</div>
+                    <img src="anna-viktor-pozvanka.png" alt="Svadobná pozvánka Anna a Viktor" class="feature-image" />
+                    <p>
+                        Pozvánka inšpirovaná historickým zámkom a francúzskou eleganciou.
+                        Jemné zlaté detaily a noblesná typografia vytvárajú luxusný dojem.
+                    </p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="showcase-meta">Svadobný web</div>
+                    <h4>Anna &amp; Viktor</h4>
+                    <p>
+                        Svadobný web obsahuje informácie pre hostí, harmonogram, miesto konania
+                        aj RSVP formulár pre jednoduché potvrdzovanie účasti.
+                    </p>
+                    <a href="https://yesdaystudio.github.io/historic-castle---portfolio/#rsvp" target="_blank" class="btn-link">Pozrieť web Anna &amp; Viktor</a>
+                </div>
+
+                <div class="feature-box qr-box">
+                    <div class="showcase-meta">QR kód na web</div>
+                    <img src="anna-viktor-qr.png" alt="QR kód na svadobný web Anna a Viktor" />
+                    <p class="qr-caption">
+                        Tento QR kód smeruje priamo na web Anna &amp; Viktor.
+                        Po naskenovaní sa otvorí svadobná stránka s informáciami a RSVP.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="portfolio-lea" class="portfolio-panel">
+        <div class="portfolio-product">
+            <div class="portfolio-product-header">
+                <div>
+                    <div class="portfolio-product-label">Kompletný svadobný set</div>
+                    <h3>Lea &amp; Jakub</h3>
+                    <p>
+                        Boho warm koncept v jemných prírodných tónoch: elegantná pozvánka,
+                        svadobný web s funkčným RSVP a QR kód, vďaka ktorému sa hostia dostanú na web jedným naskenovaním.
+                    </p>
+                </div>
+                <div class="product-links">
+                    <a href="https://yesdaystudio.github.io/Boho-warm---portfolio/" target="_blank" class="secondary-link">Otvoriť web</a>
+                    <a href="lea-jakub-pozvanka.png" target="_blank" class="secondary-link">Pozrieť pozvánku</a>
+                    <a href="lea-jakub-qr.png" target="_blank" class="secondary-link">Stiahnuť QR</a>
+                </div>
+            </div>
+
+            <div class="product-showcase-grid">
+                <div class="feature-box">
+                    <div class="showcase-meta">Pozvánka</div>
+                    <img src="lea-jakub-pozvanka.png" alt="Svadobná pozvánka Lea a Jakub" class="feature-image" />
+                    <p>
+                        Jemná boho pozvánka v teplých neutrálnych tónoch s romantickou typografiou.
+                        Hodí sa na digitálne zdieľanie aj ako podklad pre tlač svadobných oznámení.
+                    </p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="showcase-meta">Svadobný web</div>
+                    <h4>Lea &amp; Jakub</h4>
+                    <p>
+                        Web pôsobí prirodzene a uvoľnene, no zároveň elegantne. Obsahuje informácie o svadobnom dni,
+                        praktické detaily pre hostí a opravené tlačidlo Potvrdiť účasť smerujúce na RSVP sekciu.
+                    </p>
+                    <a href="https://yesdaystudio.github.io/Boho-warm---portfolio/" target="_blank" class="btn-link">Pozrieť web Lea &amp; Jakub</a>
+                </div>
+
+                <div class="feature-box qr-box">
+                    <div class="showcase-meta">QR kód na web</div>
+                    <img src="lea-jakub-qr.png" alt="QR kód na svadobný web Lea a Jakub" />
+                    <p class="qr-caption">
+                        Tento QR kód smeruje priamo na web Lea &amp; Jakub.
+                        Po naskenovaní sa otvorí svadobná stránka s harmonogramom a RSVP formulárom.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="portfolio-qr" class="portfolio-panel">
+        <div class="showcase-grid">
+            <div class="showcase-card">
+                <div class="showcase-meta">QR kód na web</div>
+                <img src="diana-anton-qr.png" alt="QR kód Diana a Anton" class="feature-image" style="max-width:220px; margin: 0 auto 20px;" />
+                <h3>Diana &amp; Anton</h3>
+                <p>QR kód prepojený priamo na svadobný web. Ideálne riešenie na pozvánku, detailnú kartičku alebo uvítací set pre hostí.</p>
+                <a href="https://yesdaystudio.github.io/diana-anton.github.io/" target="_blank" class="btn-link">Otvoriť web</a>
+            </div>
+
+            <div class="showcase-card">
+                <div class="showcase-meta">QR kód na web</div>
+                <img src="anna-viktor-qr.png" alt="QR kód Anna a Viktor" class="feature-image" style="max-width:220px; margin: 0 auto 20px;" />
+                <h3>Anna &amp; Viktor</h3>
+                <p>Elegantný QR kód smerujúci na svadobný web s RSVP. Výborný doplnok na pozvánku alebo samostatnú kartičku.</p>
+                <a href="https://yesdaystudio.github.io/historic-castle---portfolio/#rsvp" target="_blank" class="btn-link">Otvoriť web</a>
+            </div>
+
+            <div class="showcase-card">
+                <div class="showcase-meta">QR kód na web</div>
+                <img src="lea-jakub-qr.png" alt="QR kód Lea a Jakub" class="feature-image" style="max-width:220px; margin: 0 auto 20px;" />
+                <h3>Lea &amp; Jakub</h3>
+                <p>QR kód prepojený na boho svadobný web. Skvelo funguje na pozvánke, samostatnej kartičke aj v digitálnej komunikácii s hosťami.</p>
+                <a href="https://yesdaystudio.github.io/Boho-warm---portfolio/" target="_blank" class="btn-link">Otvoriť web</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="cennik" style="background: var(--white);">
+    <h2>Balíčky služieb</h2>
+    <p class="section-intro">
+        Vyberte si balíček, ktorý najlepšie vystihuje vašu predstavu. Každý z nich je navrhnutý tak,
+        aby vám ušetril čas a zároveň vytvoril krásny, zladený svadobný vizuál.
+    </p>
+
+    <div class="pricing-grid">
+        <div class="price-box">
+            <div class="package-label">Pre digitálne minimum</div>
+            <h3>YesDay Mini</h3>
+            <p class="package-intro">
+                Návrh svadobných pozvánok, unikátny QR kód a svadobný web s dôležitými informáciami pre hostí.
+            </p>
+            <div class="price">49€</div>
+            <ul>
+                <li>návrh dizajnu svadobných pozvánok</li>
+                <li>unikátny QR kód, ktorý hostí preklikne na svadobný web</li>
+                <li>dizajn svadobného webu s informáciami o svadbe</li>
+                <li>bez RSVP formulára na webe</li>
+            </ul>
+            <button class="package-button" type="button" onclick="selectPackage('YesDay Mini')">Vybrať balíček</button>
+        </div>
+
+        <div class="price-box featured">
+            <div class="package-label">Najobľúbenejšia voľba</div>
+            <h3>YesDay Standard</h3>
+            <p class="package-intro">
+                Všetko z balíčka Mini plus RSVP formulár a prehľad odpovedí hostí na jednom mieste.
+            </p>
+            <div class="price">99€</div>
+            <ul>
+                <li>návrh dizajnu svadobných pozvánok v PDF</li>
+                <li>unikátny QR kód, ktorý hostí preklikne na svadobný web</li>
+                <li>dizajn svadobného webu s informáciami o svadbe</li>
+                <li>RSVP formulár na webe</li>
+                <li>prehľad odpovedí hostí vrátane počtu dospelých, detí, ubytovania a dopravy</li>
+            </ul>
+            <button class="package-button" type="button" onclick="selectPackage('YesDay Standard')">Vybrať balíček</button>
+        </div>
+
+        <div class="price-box">
+            <div class="package-label">Kompletné riešenie</div>
+            <h3>YesDay Premium</h3>
+            <p class="package-intro">
+                Kompletné digitálne aj tlačové riešenie so zladenou svadobnou grafikou, RSVP formulárom a výstupmi pre jednoduchšiu organizáciu.
+            </p>
+            <div class="price">Individuálne</div>
+            <ul>
+                <li>návrh dizajnu svadobných pozvánok v PDF</li>
+                <li>unikátny QR kód, ktorý hostí preklikne na svadobný web</li>
+                <li>dizajn svadobného webu s informáciami o svadbe</li>
+                <li>RSVP formulár na webe</li>
+                <li>prehľad odpovedí hostí vrátane počtu dospelých, detí, ubytovania a dopravy</li>
+                <li>kompletné návrhy svadobných tlačovín</li>
+                <li>zladenie celej svadobnej grafiky do jednotného štýlu</li>
+            </ul>
+            <button class="package-button" type="button" onclick="selectPackage('YesDay Premium')">Vybrať balíček</button>
+        </div>
+    </div>
+</section>
+
+<section id="dotaznik-sekcia">
+    <h2>Vytvorme váš svadobný svet</h2>
+
+    <div id="booking-form-wrapper">
+        <div class="form-header">
+            <h3>Ďakujeme, že ste si vybrali YesDay studio 💍</h3>
+            <p>
+                Tento formulár nám pomôže vytvoriť svadobný web a pozvánky presne podľa vašich predstáv.
+            </p>
+        </div>
+
+        <div class="selected-package-banner">
+            Vybraný balíček: <strong id="selected-package-text">zatiaľ nevybraný</strong>
+        </div>
+
+        <form id="booking-form">
+            <input type="hidden" id="selected-package-input" name="selected_package" value="" />
+
+            <div class="form-step active" id="step1">
+                <span class="step-indicator">Sekcia 1 zo 7</span>
+                <h3>Základné informácie</h3>
+
+                <label for="couple-names">1. Mená snúbencov</label>
+                <input id="couple-names" name="couple_names" type="text" placeholder="napr. Laura & Martin" />
+
+                <label for="email">2. Email</label>
+                <input id="email" name="email" type="email" placeholder="vas@email.sk" />
+
+                <label for="wedding-date">3. Dátum svadby</label>
+                <input id="wedding-date" name="wedding_date" type="date" />
+
+                <label for="ceremony-place">4. Miesto obradu</label>
+                <input id="ceremony-place" name="ceremony_place" type="text" placeholder="napr. Kaštieľ Tomášov" />
+
+                <label for="party-place">5. Miesto oslavy</label>
+                <input id="party-place" name="party_place" type="text" placeholder="napr. Záhrada pri kaštieli" />
+
+                <label for="ceremony-time">6. Čas obradu</label>
+                <input id="ceremony-time" name="ceremony_time" type="text" placeholder="napr. 15:00" />
+
+                <div class="btn-group">
+                    <button type="button" class="btn-next" onclick="goToStep(2)">Pokračovať</button>
+                </div>
+            </div>
+
+            <div class="form-step" id="step2">
+                <span class="step-indicator">Sekcia 2 zo 7</span>
+                <h3>Obsah svadobného webu</h3>
+
+                <label>7. Aké sekcie chcete mať na webe?</label>
+                <div class="checkbox-group"><input type="checkbox" name="sections" value="harmonogram" /> Harmonogram</div>
+                <div class="checkbox-group"><input type="checkbox" name="sections" value="ubytovanie" /> Ubytovanie</div>
+                <div class="checkbox-group"><input type="checkbox" name="sections" value="doprava" /> Doprava / parkovanie</div>
+                <div class="checkbox-group"><input type="checkbox" name="sections" value="dresscode" /> Dress code</div>
+                <div class="checkbox-group"><input type="checkbox" name="sections" value="dary" /> Dary / wishlist</div>
+
+                <label for="website-texts">8. Texty pre web (ak máte)</label>
+                <textarea id="website-texts" name="website_texts" rows="4" placeholder="Ak ešte nemáte, nevadí – doladíme spolu."></textarea>
+
+                <div class="btn-group">
+                    <button type="button" class="btn-prev" onclick="goToStep(1)">Späť</button>
+                    <button type="button" class="btn-next" onclick="goToStep(3)">Pokračovať</button>
+                </div>
+            </div>
+
+            <div class="form-step" id="step3">
+                <span class="step-indicator">Sekcia 3 zo 7</span>
+                <h3>RSVP formulár</h3>
+
+                <div id="rsvp-package-note" class="package-note">
+                    Táto sekcia sa zobrazí iba pri balíčkoch, ktoré obsahujú RSVP formulár.
+                </div>
+
+                <div id="rsvp-fields">
+                    <label for="rsvp-included">9. Chcete, aby RSVP formulár obsahoval tieto možnosti?</label>
+                    <div class="checkbox-group"><input type="checkbox" name="rsvp_options" value="attendance" /> Potvrdenie účasti</div>
+                    <div class="checkbox-group"><input type="checkbox" name="rsvp_options" value="guest_count" /> Počet osôb</div>
+                    <div class="checkbox-group"><input type="checkbox" name="rsvp_options" value="meal_choice" /> Výber jedla</div>
+                    <div class="checkbox-group"><input type="checkbox" name="rsvp_options" value="children" /> Počet detí</div>
+                    <div class="checkbox-group"><input type="checkbox" name="rsvp_options" value="accommodation" /> Ubytovanie</div>
+                    <div class="checkbox-group"><input type="checkbox" name="rsvp_options" value="transport" /> Doprava</div>
+                </div>
+
+                <div id="no-rsvp-message" class="package-note hidden">
+                    Pri balíčku <strong>YesDay Mini</strong> RSVP formulár nie je súčasťou balíčka, preto túto časť preskočíme.
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn-prev" onclick="goToStep(2)">Späť</button>
+                    <button type="button" class="btn-next" onclick="goToStep(4)">Pokračovať</button>
+                </div>
+            </div>
+
+            <div class="form-step" id="step4">
+                <span class="step-indicator">Sekcia 4 zo 7</span>
+                <h3>Dizajn</h3>
+
+                <label for="style-select">10. Aký štýl sa vám páči?</label>
+                <select id="style-select" name="style">
+                    <option value="">Vyberte možnosť</option>
+                    <option value="romanticky">romantický</option>
+                    <option value="moderny">moderný</option>
+                    <option value="minimalisticky">minimalistický</option>
+                    <option value="elegantny">elegantný</option>
+                </select>
+
+                <label for="wedding-colors">11. Farby svadby</label>
+                <input id="wedding-colors" name="wedding_colors" type="text" placeholder="napr. ivory, champagne, zlatá" />
+
+                <label for="inspirations">12. Inšpirácie (Pinterest / odkazy)</label>
+                <textarea id="inspirations" name="inspirations" rows="3" placeholder="Vložte linky alebo stručný popis štýlu"></textarea>
+
+                <label for="dislikes">13. Čo sa vám určite nepáči?</label>
+                <textarea id="dislikes" name="dislikes" rows="3" placeholder="napr. príliš tmavé farby, prezdobené prvky..."></textarea>
+
+                <div class="btn-group">
+                    <button type="button" class="btn-prev" onclick="goToStep(3)">Späť</button>
+                    <button type="button" class="btn-next" onclick="goToStep(5)">Pokračovať</button>
+                </div>
+            </div>
+
+            <div class="form-step" id="step5">
+                <span class="step-indicator">Sekcia 5 zo 7</span>
+                <h3>Pozvánky</h3>
+
+                <label for="invite-text">14. Text na pozvánku</label>
+                <textarea id="invite-text" name="invite_text" rows="3" placeholder="Ak už máte presný text, vložte ho sem"></textarea>
+
+                <label for="invite-count">15. Približný počet pozvánok</label>
+                <input id="invite-count" name="invite_count" type="text" placeholder="napr. 40 ks" />
+
+                <label for="print-interest">16. Máte záujem aj o tlač?</label>
+                <select id="print-interest" name="print_interest">
+                    <option value="">Vyberte možnosť</option>
+                    <option value="ano">Áno</option>
+                    <option value="nie">Nie</option>
+                    <option value="mozno">Ešte si nie sme istí</option>
+                </select>
+
+                <div class="btn-group">
+                    <button type="button" class="btn-prev" onclick="goToStep(4)">Späť</button>
+                    <button type="button" class="btn-next" onclick="goToStep(6)">Pokračovať</button>
+                </div>
+            </div>
+
+            <div class="form-step" id="step6">
+                <span class="step-indicator">Sekcia 6 zo 7</span>
+                <h3>QR kód & technické detaily</h3>
+
+                <label for="qr-placement">17. Kam chcete umiestniť QR kód?</label>
+                <select id="qr-placement" name="qr_placement">
+                    <option value="">Vyberte možnosť</option>
+                    <option value="pozvanka">priamo na pozvánke</option>
+                    <option value="karticka">samostatná kartička</option>
+                    <option value="rozhodneme">ešte sa rozhodneme</option>
+                </select>
+
+                <label for="custom-domain">18. Máte záujem o vlastný názov webu alebo doménu?</label>
+                <input id="custom-domain" name="custom_domain" type="text" placeholder="napr. lauraamartin.sk alebo yesdaystudio.sk/laura-martin" />
+
+                <div class="btn-group">
+                    <button type="button" class="btn-prev" onclick="goToStep(5)">Späť</button>
+                    <button type="button" class="btn-next" onclick="goToStep(7)">Pokračovať</button>
+                </div>
+            </div>
+
+            <div class="form-step" id="step7">
+                <span class="step-indicator">Sekcia 7 zo 7</span>
+                <h3>Na záver</h3>
+
+                <label for="deadline">19. Kedy by ste chceli mať všetko pripravené?</label>
+                <input id="deadline" name="deadline" type="date" />
+
+                <label for="extra-info">20. Je ešte niečo, čo by sme mali vedieť?</label>
+                <textarea id="extra-info" name="extra_info" rows="4" placeholder="Napíšte nám všetko, čo je pre vás dôležité"></textarea>
+
+                <div class="btn-group">
+                    <button type="button" class="btn-prev" onclick="goToStep(6)">Späť</button>
+                    <button type="submit" class="btn-submit">Odoslať dotazník</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<section id="thank-you-message" style="
+  display:none;
+  padding:85px 20px;
+  text-align:center;
+  background:#fffcf5;
+  border-top:1px solid #eee;
+  border-bottom:1px solid #eee;
+">
+  <div style="max-width:700px; margin:0 auto; background:#fff; border:1px solid #e9e9e9; padding:42px 30px; box-shadow:0 10px 40px rgba(0,0,0,0.05);">
+    <p style="font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:#d4af37; font-weight:600; margin:0 0 10px;">Dotazník bol odoslaný</p>
+    <h2 style="margin-top:0;">Ďakujeme 💛</h2>
+    <p>Váš dotazník bol úspešne odoslaný.</p>
+    <p>Ozveme sa vám čoskoro s ďalšími krokmi.</p>
+  </div>
+</section>
+
+<section id="kontakt">
+    <h2>Kontakty</h2>
+    <p class="section-intro">
+        Ak máš otázky alebo si chceš overiť detaily ešte pred objednávkou, ozvi sa nám.
+    </p>
+
+    <div class="contact-grid">
+        <div class="contact-card">
+            <div class="showcase-meta">E-mail</div>
+            <h3>Napíš nám</h3>
+            <a class="contact-link" href="mailto:info.yesdaystudio@gmail.com">info.yesdaystudio@gmail.com</a>
+        </div>
+
+        <div class="contact-card">
+            <div class="showcase-meta">Instagram</div>
+            <h3>Sleduj nás</h3>
+            <a class="instagram-link" href="https://www.instagram.com/yesdaystudio/" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5ZM17.5 6.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5Z"/>
+                </svg>
+                @yesdaystudio
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <a href="https://www.instagram.com/yesdaystudio/" target="_blank" rel="noopener noreferrer">@yesdaystudio</a>
+    <p>&copy; 2026 YesDay studio</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+    const supabaseUrl = 'https://aqklpeluucktvniieess.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxa2xwZWx1dWNrdHZuaWllZXNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTc3NTEsImV4cCI6MjA5MjUzMzc1MX0.GHO2BODLxncKkH-6hTklXFuBO4OiHYuq254P2VM1j3w';
+    const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+    let currentPackage = '';
+
+    function updateRsvpVisibility(packageName) {
+        const rsvpFields = document.getElementById('rsvp-fields');
+        const noRsvpMessage = document.getElementById('no-rsvp-message');
+        if (!rsvpFields || !noRsvpMessage) return;
+
+        if (packageName === 'YesDay Mini') {
+            rsvpFields.classList.add('hidden');
+            noRsvpMessage.classList.remove('hidden');
+        } else {
+            rsvpFields.classList.remove('hidden');
+            noRsvpMessage.classList.add('hidden');
+        }
+    }
+
+    function scrollToQuestionnaire() {
+        const section = document.getElementById('dotaznik-sekcia');
+        const nav = document.querySelector('nav');
+        if (!section) return;
+        const navHeight = nav ? nav.offsetHeight : 0;
+        const top = section.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+
+    function selectPackage(packageName) {
+        currentPackage = packageName;
+        const thankYouMessage = document.getElementById('thank-you-message');
+        if (thankYouMessage) thankYouMessage.style.display = 'none';
+        const formWrapper = document.getElementById('booking-form-wrapper');
+        if (formWrapper) formWrapper.style.display = 'block';
+
+        document.getElementById('dotaznik-sekcia').classList.add('visible');
+        document.getElementById('selected-package-text').textContent = packageName;
+        document.getElementById('selected-package-input').value = packageName;
+        updateRsvpVisibility(packageName);
+        goToStep(1);
+        setTimeout(scrollToQuestionnaire, 120);
+    }
+
+    function goToStep(stepNumber) {
+        const steps = document.querySelectorAll('.form-step');
+        steps.forEach(step => step.classList.remove('active'));
+        const targetStep = document.getElementById('step' + stepNumber);
+        if (targetStep) targetStep.classList.add('active');
+        scrollToQuestionnaire();
+    }
+
+    function showPortfolioTab(tabName, button) {
+        const panels = document.querySelectorAll('.portfolio-panel');
+        const buttons = document.querySelectorAll('.tab-button');
+        panels.forEach(panel => panel.classList.remove('active'));
+        buttons.forEach(btn => btn.classList.remove('active'));
+        const targetPanel = document.getElementById('portfolio-' + tabName);
+        if (targetPanel) targetPanel.classList.add('active');
+        if (button) button.classList.add('active');
+    }
+
+    function getCheckedValues(name) {
+        return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+            .map(input => input.value)
+            .join(', ');
+    }
+
+    const bookingForm = document.getElementById('booking-form');
+
+    if (bookingForm) {
+        bookingForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const selectedPackage = document.getElementById('selected-package-input').value;
+            if (!selectedPackage) {
+                alert('Prosím, najprv si vyberte balíček.');
+                return;
+            }
+
+            const submitButton = this.querySelector('button[type="submit"]');
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Odosielam...';
+            }
+
+            const clientPayload = {
+                status: 'New',
+                names: document.getElementById('couple-names').value || '',
+                email: document.getElementById('email').value || '',
+                wedding_date: document.getElementById('wedding-date').value || null,
+                package: selectedPackage,
+                language: 'SK',
+                style: document.getElementById('style-select').value || '',
+                color_preferences: document.getElementById('wedding-colors').value || '',
+                must_avoid: document.getElementById('dislikes').value || '',
+                inspiration_links: document.getElementById('inspirations').value || '',
+                notes: document.getElementById('extra-info').value || ''
+            };
+
+            const { error: clientError } = await supabaseClient
+                .from('clients')
+                .insert([clientPayload]);
+
+            if (clientError) {
+                console.error('Client insert error:', clientError);
+                alert('Nepodarilo sa uložiť základné údaje: ' + clientError.message);
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Odoslať dotazník';
+                }
+                return;
+            }
+
+            const briefPayload = {
+                client_id: null,
+                story: document.getElementById('website-texts').value || '',
+                venue_ceremony: document.getElementById('ceremony-place').value || '',
+                venue_reception: document.getElementById('party-place').value || '',
+                dress_code: getCheckedValues('sections').includes('dresscode') ? 'Áno, klient chce dress code sekciu.' : '',
+                gifts: getCheckedValues('sections').includes('dary') ? 'Áno, klient chce sekciu dary / wishlist.' : '',
+                accommodation: getCheckedValues('sections').includes('ubytovanie') ? 'Áno, klient chce ubytovanie.' : '',
+                transport: getCheckedValues('sections').includes('doprava') ? 'Áno, klient chce dopravu / parkovanie.' : '',
+                faq: getCheckedValues('sections'),
+                special_requests:
+                    'Čas obradu: ' + (document.getElementById('ceremony-time').value || '') + '\n' +
+                    'RSVP možnosti: ' + getCheckedValues('rsvp_options') + '\n' +
+                    'Text na pozvánku: ' + (document.getElementById('invite-text').value || '') + '\n' +
+                    'Počet pozvánok: ' + (document.getElementById('invite-count').value || '') + '\n' +
+                    'Záujem o tlač: ' + (document.getElementById('print-interest').value || '') + '\n' +
+                    'QR umiestnenie: ' + (document.getElementById('qr-placement').value || '') + '\n' +
+                    'Doména: ' + (document.getElementById('custom-domain').value || '') + '\n' +
+                    'Deadline: ' + (document.getElementById('deadline').value || '') + '\n' +
+                    'Extra info: ' + (document.getElementById('extra-info').value || ''),
+                rsvp_needed: selectedPackage !== 'YesDay Mini',
+                rsvp_deadline: document.getElementById('deadline').value || null,
+                collect_meal_choice: getCheckedValues('rsvp_options').includes('meal_choice'),
+                collect_allergies: false,
+                collect_plus_one: getCheckedValues('rsvp_options').includes('guest_count'),
+                collect_kids: getCheckedValues('rsvp_options').includes('children')
+            };
+
+            const { error: briefError } = await supabaseClient
+                .from('briefs')
+                .insert([briefPayload]);
+
+            if (briefError) {
+                console.error('Brief insert error:', briefError);
+                alert('Základné údaje sa uložili, ale brief sa neuložil: ' + briefError.message);
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Odoslať dotazník';
+                }
+                return;
+            }
+            const escapeHtml = function(value) {
+                return String(value || '')
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#039;');
+            };
+
+            const nl2br = function(value) {
+                return escapeHtml(value || '-').replace(/\n/g, '<br>');
+            };
+
+            const selectedSections = getCheckedValues('sections') || '-';
+            const selectedRsvpOptions = getCheckedValues('rsvp_options') || '-';
+            const inviteText = document.getElementById('invite-text').value || '-';
+            const inviteCount = document.getElementById('invite-count').value || '-';
+            const printInterest = document.getElementById('print-interest').value || '-';
+            const qrPlacement = document.getElementById('qr-placement').value || '-';
+            const customDomain = document.getElementById('custom-domain').value || '-';
+            const deadline = document.getElementById('deadline').value || '-';
+
+            const emailHtml = `
+                <div style="font-family: Arial, sans-serif; color:#1a1a1a; line-height:1.6; max-width:680px;">
+                    <h2 style="margin:0 0 16px; color:#1a1a1a;">Nový dopyt – YesDay Studio 💍</h2>
+                    <p style="margin:0 0 24px; color:#666;">Prišiel nový vyplnený svadobný dotazník.</p>
+
+                    <h3 style="margin:24px 0 8px; color:#d4af37; font-size:14px; text-transform:uppercase; letter-spacing:1px;">Klient</h3>
+                    <p><strong>Mená:</strong> ${escapeHtml(clientPayload.names || '-')}</p>
+                    <p><strong>Email:</strong> ${escapeHtml(clientPayload.email || '-')}</p>
+                    <p><strong>Balíček:</strong> ${escapeHtml(clientPayload.package || '-')}</p>
+                    <p><strong>Dátum svadby:</strong> ${escapeHtml(clientPayload.wedding_date || '-')}</p>
+
+                    <hr style="border:none; border-top:1px solid #eee; margin:24px 0;">
+
+                    <h3 style="margin:24px 0 8px; color:#d4af37; font-size:14px; text-transform:uppercase; letter-spacing:1px;">Miesta a čas</h3>
+                    <p><strong>Miesto obradu:</strong> ${escapeHtml(briefPayload.venue_ceremony || '-')}</p>
+                    <p><strong>Miesto oslavy:</strong> ${escapeHtml(briefPayload.venue_reception || '-')}</p>
+                    <p><strong>Čas obradu:</strong> ${escapeHtml(document.getElementById('ceremony-time').value || '-')}</p>
+
+                    <hr style="border:none; border-top:1px solid #eee; margin:24px 0;">
+
+                    <h3 style="margin:24px 0 8px; color:#d4af37; font-size:14px; text-transform:uppercase; letter-spacing:1px;">Dizajn</h3>
+                    <p><strong>Štýl:</strong> ${escapeHtml(clientPayload.style || '-')}</p>
+                    <p><strong>Farby:</strong> ${escapeHtml(clientPayload.color_preferences || '-')}</p>
+                    <p><strong>Inšpirácie:</strong><br>${nl2br(clientPayload.inspiration_links || '-')}</p>
+                    <p><strong>Čomu sa vyhnúť:</strong><br>${nl2br(clientPayload.must_avoid || '-')}</p>
+
+                    <hr style="border:none; border-top:1px solid #eee; margin:24px 0;">
+
+                    <h3 style="margin:24px 0 8px; color:#d4af37; font-size:14px; text-transform:uppercase; letter-spacing:1px;">Web a RSVP</h3>
+                    <p><strong>Sekcie webu:</strong> ${escapeHtml(selectedSections)}</p>
+                    <p><strong>Texty pre web:</strong><br>${nl2br(briefPayload.story || '-')}</p>
+                    <p><strong>RSVP:</strong> ${briefPayload.rsvp_needed ? 'Áno' : 'Nie'}</p>
+                    <p><strong>Možnosti RSVP:</strong> ${escapeHtml(selectedRsvpOptions)}</p>
+
+                    <hr style="border:none; border-top:1px solid #eee; margin:24px 0;">
+
+                    <h3 style="margin:24px 0 8px; color:#d4af37; font-size:14px; text-transform:uppercase; letter-spacing:1px;">Pozvánky a technické detaily</h3>
+                    <p><strong>Text na pozvánku:</strong><br>${nl2br(inviteText)}</p>
+                    <p><strong>Počet pozvánok:</strong> ${escapeHtml(inviteCount)}</p>
+                    <p><strong>Záujem o tlač:</strong> ${escapeHtml(printInterest)}</p>
+                    <p><strong>QR umiestnenie:</strong> ${escapeHtml(qrPlacement)}</p>
+                    <p><strong>Doména:</strong> ${escapeHtml(customDomain)}</p>
+                    <p><strong>Deadline:</strong> ${escapeHtml(deadline)}</p>
+
+                    <hr style="border:none; border-top:1px solid #eee; margin:24px 0;">
+
+                    <h3 style="margin:24px 0 8px; color:#d4af37; font-size:14px; text-transform:uppercase; letter-spacing:1px;">Poznámky</h3>
+                    <p>${nl2br(clientPayload.notes || '-')}</p>
+
+                    <p style="margin-top:32px; color:#666;">— YesDay Studio</p>
+                </div>
+            `;
+
+            fetch('https://hook.eu1.make.com/c5ilc2vp59f3as7ttoxab539v5h8s5h1', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: emailHtml
+            }).catch(function(error) {
+                console.warn('Make webhook notification failed, but form data was saved:', error);
+            });
+
+            this.reset();
+
+            const formWrapper = document.getElementById('booking-form-wrapper');
+            if (formWrapper) formWrapper.style.display = 'none';
+
+            const thankYouMessage = document.getElementById('thank-you-message');
+            if (thankYouMessage) {
+                thankYouMessage.style.display = 'block';
+                document.getElementById('dotaznik-sekcia').classList.add('visible');
+                thankYouMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                alert('Ďakujeme! Dotazník bol úspešne odoslaný.');
+            }
+
+            currentPackage = '';
+            document.getElementById('selected-package-text').textContent = 'zatiaľ nevybraný';
+            document.getElementById('selected-package-input').value = '';
+            updateRsvpVisibility('');
+
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Odoslať dotazník';
+            }
+        });
+    }
+
+    updateRsvpVisibility('');
+</script>
+
+</body>
+</html>
