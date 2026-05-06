@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YesDay | Klientsky dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream:#f4f1ea;
+  --paper:#fffaf4;
+  --dark:#1a1a1a;
+  --muted:#777;
+  --gold:#d4af37;
+  --border:#e6ded3;
+  --white:#ffffff;
+  --green:#2f6f4e;
+  --red:#9b3b3b;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  font-family:'Montserrat', sans-serif;
+  background:linear-gradient(180deg,#fbf8f1 0%, var(--cream) 100%);
+  color:var(--dark);
+  min-height:100vh;
+  padding:36px 18px;
+}
+
+.dashboard { max-width:1200px; margin:0 auto; }
+
+.header { text-align:center; margin-bottom:34px; }
+
+.header .label {
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:.72rem;
+  font-weight:600;
+  margin-bottom:8px;
+}
+
+h1 {
+  font-family:'Playfair Display', serif;
+  font-weight:400;
+  font-size:clamp(2.1rem, 5vw, 3.4rem);
+  margin:0 0 10px;
+}
+
+.header p { margin:0; color:var(--muted); line-height:1.7; }
+
+.stats-grid {
+  display:grid;
+  grid-template-columns:repeat(6, minmax(130px,1fr));
+  gap:14px;
+  margin-bottom:26px;
+}
+
+.card {
+  background:rgba(255,255,255,.86);
+  border:1px solid var(--border);
+  padding:20px 16px;
+  box-shadow:0 14px 35px rgba(0,0,0,.045);
+}
+
+.stat-card h3 {
+  margin:0 0 10px;
+  font-size:.68rem;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  color:var(--muted);
+}
+
+.stat-card p {
+  margin:0;
+  font-size:2rem;
+  font-weight:600;
+  color:var(--gold);
+}
+
+.controls {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:18px;
+  flex-wrap:wrap;
+}
+
+.controls input,
+.controls select {
+  border:1px solid var(--border);
+  background:var(--paper);
+  padding:12px 14px;
+  font:inherit;
+  min-width:220px;
+}
+
+.table-wrap {
+  background:rgba(255,255,255,.9);
+  border:1px solid var(--border);
+  overflow-x:auto;
+  box-shadow:0 20px 50px rgba(0,0,0,.055);
+}
+
+table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:1100px;
+}
+
+th {
+  background:#fbf8f1;
+  text-align:left;
+  padding:14px;
+  font-size:.7rem;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  border-bottom:1px solid var(--border);
+  white-space:nowrap;
+}
+
+td {
+  padding:14px;
+  border-bottom:1px solid #eee;
+  vertical-align:top;
+  font-size:.9rem;
+  line-height:1.55;
+}
+
+.badge {
+  display:inline-block;
+  padding:4px 9px;
+  font-size:.72rem;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  border:1px solid var(--border);
+  background:#fff;
+}
+
+.badge.yes { color:var(--green); border-color:rgba(47,111,78,.35); }
+.badge.no { color:var(--red); border-color:rgba(155,59,59,.35); }
+
+.loading, .empty, .error {
+  padding:30px;
+  text-align:center;
+  color:var(--muted);
+}
+
+.error { color:var(--red); }
+
+.footer-note {
+  margin-top:14px;
+  color:var(--muted);
+  font-size:.85rem;
+  text-align:center;
+}
+
+@media(max-width:900px) {
+  .stats-grid { grid-template-columns:repeat(2, 1fr); }
+}
+
+@media(max-width:560px) {
+  .stats-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+  <div class="header">
+    <div class="label">YesDay Studio</div>
+    <h1>Klientsky dashboard</h1>
+    <p>Prehľad RSVP odpovedí, hostí, ubytovania, dopravy, jedál a poznámok.</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="card stat-card"><h3>Príde odpovedí</h3><p id="stat-attending">0</p></div>
+    <div class="card stat-card"><h3>Nepríde</h3><p id="stat-declined">0</p></div>
+    <div class="card stat-card"><h3>Dospelí</h3><p id="stat-adults">0</p></div>
+    <div class="card stat-card"><h3>Deti</h3><p id="stat-children">0</p></div>
+    <div class="card stat-card"><h3>Ubytovanie</h3><p id="stat-accommodation">0</p></div>
+    <div class="card stat-card"><h3>Doprava</h3><p id="stat-transport">0</p></div>
+  </div>
+
+  <div class="controls">
+    <input id="searchInput" type="search" placeholder="Hľadať meno, alergiu, poznámku...">
+    <select id="filterSelect">
+      <option value="all">Všetky odpovede</option>
+      <option value="attending">Iba prídu</option>
+      <option value="declined">Iba neprídu</option>
+      <option value="accommodation">Potrebujú ubytovanie</option>
+      <option value="transport">Potrebujú dopravu</option>
+    </select>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Účasť</th>
+          <th>Dospelí hostia</th>
+          <th>Deti</th>
+          <th>Počet dosp.</th>
+          <th>Počet detí</th>
+          <th>Ubytovanie</th>
+          <th>Doprava</th>
+          <th>Jedlo</th>
+          <th>Alergie</th>
+          <th>Poznámka</th>
+          <th>Odoslané</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <tr><td colspan="11" class="loading">Načítavam RSVP dáta...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer-note">
+    Dáta sa načítavajú zo Supabase podľa project_id v URL adrese.
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "SEM_VLOZ_SUPABASE_PROJECT_URL";
+const SUPABASE_ANON_KEY = "SEM_VLOZ_SUPABASE_ANON_PUBLIC_KEY";
+
+const params = new URLSearchParams(window.location.search);
+const PROJECT_ID = Number(params.get("project_id"));
+
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+let allRows = [];
+
+const tableBody = document.getElementById("tableBody");
+const searchInput = document.getElementById("searchInput");
+const filterSelect = document.getElementById("filterSelect");
+
+function yesNo(value) {
+  return value ? "Áno" : "Nie";
+}
+
+function formatDate(value) {
+  if (!value) return "-";
+  return new Date(value).toLocaleString("sk-SK");
+}
+
+function updateStats(rows) {
+  const attendingRows = rows.filter(row => row.attending === true);
+
+  document.getElementById("stat-attending").textContent = attendingRows.length;
+  document.getElementById("stat-declined").textContent = rows.filter(row => row.attending === false).length;
+  document.getElementById("stat-adults").textContent = attendingRows.reduce((sum, row) => sum + Number(row.adults_count || 0), 0);
+  document.getElementById("stat-children").textContent = attendingRows.reduce((sum, row) => sum + Number(row.children_count || 0), 0);
+  document.getElementById("stat-accommodation").textContent = rows.filter(row => row.needs_accommodation === true).length;
+  document.getElementById("stat-transport").textContent = rows.filter(row => row.needs_transport === true).length;
+}
+
+function rowMatchesSearch(row, query) {
+  if (!query) return true;
+
+  const haystack = [
+    row.guest_name,
+    row.adult_names,
+    row.children_names,
+    row.meal_choice,
+    row.allergies,
+    row.note
+  ].join(" ").toLowerCase();
+
+  return haystack.includes(query.toLowerCase());
+}
+
+function applyFilter(rows) {
+  const filter = filterSelect.value;
+  const query = searchInput.value.trim();
+
+  return rows.filter(row => {
+    if (!rowMatchesSearch(row, query)) return false;
+
+    if (filter === "attending") return row.attending === true;
+    if (filter === "declined") return row.attending === false;
+    if (filter === "accommodation") return row.needs_accommodation === true;
+    if (filter === "transport") return row.needs_transport === true;
+
+    return true;
+  });
+}
+
+function renderRows() {
+  const rows = applyFilter(allRows);
+  updateStats(allRows);
+
+  if (!PROJECT_ID) {
+    tableBody.innerHTML = '<tr><td colspan="11" class="error">Chýba project_id v URL. Použi napríklad dashboard.html?project_id=1</td></tr>';
+    return;
+  }
+
+  if (!rows.length) {
+    tableBody.innerHTML = '<tr><td colspan="11" class="empty">Zatiaľ tu nie sú žiadne RSVP odpovede.</td></tr>';
+    return;
+  }
+
+  tableBody.innerHTML = rows.map(row => `
+    <tr>
+      <td>
+        <span class="badge ${row.attending ? "yes" : "no"}">
+          ${row.attending ? "Príde" : "Nepríde"}
+        </span>
+      </td>
+      <td><strong>${row.adult_names || row.guest_name || "-"}</strong></td>
+      <td>${row.children_names || "-"}</td>
+      <td>${row.adults_count ?? 0}</td>
+      <td>${row.children_count ?? 0}</td>
+      <td>${yesNo(row.needs_accommodation)}</td>
+      <td>${yesNo(row.needs_transport)}</td>
+      <td>${row.meal_choice || "-"}</td>
+      <td>${row.allergies || "-"}</td>
+      <td>${row.note || "-"}</td>
+      <td>${formatDate(row.created_at)}</td>
+    </tr>
+  `).join("");
+}
+
+async function loadData() {
+  if (!PROJECT_ID) {
+    renderRows();
+    return;
+  }
+
+  const { data, error } = await supabaseClient
+    .from("rsvp_responses")
+    .select("*")
+    .eq("project_id", PROJECT_ID)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error(error);
+    tableBody.innerHTML = '<tr><td colspan="11" class="error">Nepodarilo sa načítať dáta. Skontroluj SELECT policy v Supabase.</td></tr>';
+    return;
+  }
+
+  allRows = data || [];
+  renderRows();
+}
+
+searchInput.addEventListener("input", renderRows);
+filterSelect.addEventListener("change", renderRows);
+
+loadData();
+</script>
+
+</body>
+</html>
