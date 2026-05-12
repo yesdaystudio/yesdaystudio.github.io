@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Potvrdenie účasti | YesDay Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream:#f4f1ea;
+  --paper:#fffaf4;
+  --dark:#1a1a1a;
+  --muted:#777;
+  --gold:#d4af37;
+  --border:#e6ded3;
+  --white:#ffffff;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  font-family:'Montserrat', sans-serif;
+  background:linear-gradient(180deg,#fbf8f1 0%, var(--cream) 100%);
+  color:var(--dark);
+  min-height:100vh;
+  padding:40px 18px;
+}
+
+.wrapper {
+  max-width:760px;
+  margin:0 auto;
+  background:rgba(255,255,255,0.82);
+  border:1px solid var(--border);
+  padding:42px 28px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.06);
+}
+
+.header {
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.header .label {
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:0.72rem;
+  font-weight:600;
+  margin-bottom:8px;
+}
+
+h1 {
+  font-family:'Playfair Display', serif;
+  font-size:clamp(2rem, 6vw, 3rem);
+  font-weight:400;
+  margin:0 0 12px;
+}
+
+.header p {
+  color:var(--muted);
+  line-height:1.7;
+  margin:0 auto;
+  max-width:560px;
+}
+
+form { margin-top:28px; }
+
+label {
+  display:block;
+  margin:22px 0 8px;
+  font-size:0.78rem;
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  font-weight:600;
+}
+
+input, select, textarea {
+  width:100%;
+  border:1px solid var(--border);
+  background:var(--paper);
+  padding:13px 14px;
+  font:inherit;
+  color:var(--dark);
+  border-radius:0;
+}
+
+textarea {
+  min-height:95px;
+  resize:vertical;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.checkbox-row {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:14px;
+  color:#555;
+}
+
+.checkbox-row input { width:auto; }
+
+.name-list {
+  display:grid;
+  gap:10px;
+  margin-top:10px;
+}
+
+.name-list input { background:#fff; }
+
+button {
+  width:100%;
+  border:none;
+  background:var(--dark);
+  color:var(--white);
+  padding:16px 22px;
+  margin-top:30px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+button:disabled {
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+.notice, .error {
+  display:none;
+  margin-top:20px;
+  padding:16px;
+  line-height:1.7;
+}
+
+.notice {
+  border:1px solid rgba(212,175,55,.35);
+  background:#fffcf5;
+  color:#5b5143;
+}
+
+.error {
+  border:1px solid #d9a5a5;
+  background:#fff3f3;
+  color:#7a2a2a;
+}
+
+.small-note {
+  font-size:.86rem;
+  color:var(--muted);
+  margin-top:8px;
+  line-height:1.6;
+}
+
+.guest-card {
+  display:grid;
+  gap:10px;
+  padding:14px;
+  border:1px solid var(--border);
+  background:rgba(255,250,244,.68);
+}
+
+.guest-card-title {
+  font-size:.74rem;
+  text-transform:uppercase;
+  letter-spacing:1.3px;
+  color:var(--muted);
+  font-weight:600;
+}
+
+.guest-card textarea {
+  min-height:70px;
+}
+
+.advanced-field.hidden {
+  display:none;
+}
+
+.package-note {
+  display:none;
+  margin:18px 0 0;
+  padding:12px 14px;
+  border:1px solid rgba(212,175,55,.28);
+  background:#fffdf8;
+  color:#6d6255;
+  font-size:.86rem;
+  line-height:1.6;
+}
+
+@media(max-width:640px) {
+  .grid { grid-template-columns:1fr; }
+  .wrapper { padding:34px 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+  <div class="header">
+    <div class="label">RSVP</div>
+    <h1>Potvrdenie účasti</h1>
+    <p id="introText">
+      Prosíme, vyplňte mená všetkých dospelých hostí aj detí, aby sme vedeli pripraviť presný zoznam hostí a menovky.
+    </p>
+    <div class="package-note" id="packageNote"></div>
+  </div>
+
+  <form id="rsvpForm">
+    <label for="attending">Zúčastníte sa?</label>
+    <select id="attending" required>
+      <option value="true">Áno, prídeme</option>
+      <option value="false">Nie, nemôžeme prísť</option>
+    </select>
+
+    <div class="grid">
+      <div>
+        <label for="adultsCount">Počet dospelých</label>
+        <input id="adultsCount" type="number" min="0" max="20" value="1" required>
+      </div>
+
+      <div>
+        <label for="childrenCount">Počet detí</label>
+        <input id="childrenCount" type="number" min="0" max="20" value="0" required>
+      </div>
+    </div>
+
+    <label>Mená dospelých hostí</label>
+    <div id="adultNames" class="name-list"></div>
+
+    <label>Mená detí</label>
+    <div id="childrenNames" class="name-list"></div>
+
+    <div class="advanced-field" data-package-field="advanced">
+      <div class="checkbox-row">
+        <input id="needsAccommodation" type="checkbox">
+        <span>Potrebujeme ubytovanie</span>
+      </div>
+
+      <div class="checkbox-row">
+        <input id="needsTransport" type="checkbox">
+        <span>Potrebujeme dopravu</span>
+      </div>
+
+      <div class="small-note">
+        Pri balíku Signature a Premium sa výber jedla a alergie vypĺňajú zvlášť pri každom hosťovi.
+      </div>
+    </div>
+
+    <label for="note">Poznámka pre nevestu a ženícha</label>
+    <textarea id="note" placeholder="Sem môžete dopísať čokoľvek dôležité."></textarea>
+
+    <button type="submit" id="submitBtn">Odoslať potvrdenie</button>
+
+    <div class="notice" id="successBox">Ďakujeme, vaša odpoveď bola uložená. ♡</div>
+    <div class="error" id="errorBox">Nepodarilo sa odoslať RSVP. Skúste to prosím znova.</div>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://aqklpeluucktvniieess.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxa2xwZWx1dWNrdHZuaWllZXNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTc3NTEsImV4cCI6MjA5MjUzMzc1MX0.GHO2BODLxncKkH-6hTklXFuBO4OiHYuq254P2VM1j3w";
+
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const params = new URLSearchParams(window.location.search);
+const PROJECT_ID = Number(params.get("project_id"));
+
+const adultsCountInput = document.getElementById("adultsCount");
+const childrenCountInput = document.getElementById("childrenCount");
+const adultNamesBox = document.getElementById("adultNames");
+const childrenNamesBox = document.getElementById("childrenNames");
+const form = document.getElementById("rsvpForm");
+const successBox = document.getElementById("successBox");
+const errorBox = document.getElementById("errorBox");
+const submitBtn = document.getElementById("submitBtn");
+const packageNote = document.getElementById("packageNote");
+const introText = document.getElementById("introText");
+let packageType = "signature";
+
+function normalizePackageType(value) {
+  const cleanValue = String(value || "signature").toLowerCase().trim();
+  return ["essential", "signature", "premium"].includes(cleanValue) ? cleanValue : "signature";
+}
+
+function applyPackageSettings() {
+  const isEssential = packageType === "essential";
+  document.querySelectorAll("[data-package-field='advanced']").forEach(section => {
+    section.classList.toggle("hidden", isEssential);
+  });
+
+  if (isEssential) {
+    introText.textContent = "Prosíme, vyplňte jednoduché potvrdenie účasti, aby sme vedeli pripraviť zoznam hostí.";
+    packageNote.textContent = "Tento RSVP formulár zbiera základné odpovede: kto príde/nepríde, počet dospelých, počet detí a mená hostí.";
+    packageNote.style.display = "block";
+  } else {
+    introText.textContent = "Prosíme, vyplňte mená všetkých dospelých hostí aj detí, aby sme vedeli pripraviť presný zoznam hostí a menovky.";
+    packageNote.style.display = "none";
+  }
+}
+
+async function loadProjectSettings() {
+  if (!PROJECT_ID) return;
+
+  const { data, error } = await supabaseClient
+    .from("projects")
+    .select("package_type")
+    .eq("id", PROJECT_ID)
+    .single();
+
+  if (error) {
+    console.warn("Nepodarilo sa načítať typ balíka, používam signature.", error);
+    packageType = "signature";
+  } else {
+    packageType = normalizePackageType(data && data.package_type);
+  }
+
+  applyPackageSettings();
+  renderNameInputs();
+}
+
+function mealOptions(defaultValue = "") {
+  const options = [
+    ["", "Bez výberu / ešte nevieme"],
+    ["Mäsové menu", "Mäsové menu"],
+    ["Vegetariánske menu", "Vegetariánske menu"],
+    ["Vegánske menu", "Vegánske menu"],
+    ["Detské menu", "Detské menu"],
+    ["Iné", "Iné"]
+  ];
+
+  return options.map(([value, label]) => {
+    const selected = value === defaultValue ? " selected" : "";
+    return `<option value="${value}"${selected}>${label}</option>`;
+  }).join("");
+}
+
+function createGuestCard(type, index) {
+  const isChild = type === "child";
+  const card = document.createElement("div");
+  card.className = "guest-card";
+  card.dataset.guestType = type;
+
+  const nameInputClass = isChild ? "child-name" : "adult-name";
+  const title = isChild ? `Dieťa ${index}` : `Dospelý hosť ${index}`;
+  const placeholder = isChild ? `Meno dieťaťa ${index}` : `Meno dospelej osoby ${index}`;
+  const mealDefault = isChild ? "Detské menu" : "";
+  const mealFields = packageType === "essential" ? "" : `
+    <select class="guest-meal" aria-label="Výber jedla pre ${title}">
+      ${mealOptions(mealDefault)}
+    </select>
+    <textarea class="guest-allergy" placeholder="Alergie alebo stravovacie obmedzenia pre tohto hosťa"></textarea>
+  `;
+
+  card.innerHTML = `
+    <div class="guest-card-title">${title}</div>
+    <input type="text" class="${nameInputClass} guest-name" placeholder="${placeholder}" ${isChild ? "" : "required"}>
+    ${mealFields}
+  `;
+
+  return card;
+}
+
+function renderNameInputs() {
+  const adultsCount = Number(adultsCountInput.value || 0);
+  const childrenCount = Number(childrenCountInput.value || 0);
+
+  adultNamesBox.innerHTML = "";
+  childrenNamesBox.innerHTML = "";
+
+  for (let i = 1; i <= adultsCount; i++) {
+    adultNamesBox.appendChild(createGuestCard("adult", i));
+  }
+
+  for (let i = 1; i <= childrenCount; i++) {
+    childrenNamesBox.appendChild(createGuestCard("child", i));
+  }
+}
+
+function getValues(selector) {
+  return Array.from(document.querySelectorAll(selector))
+    .map(input => input.value.trim())
+    .filter(Boolean);
+}
+
+function getGuestDetails() {
+  if (packageType === "essential") return null;
+
+  return Array.from(document.querySelectorAll(".guest-card")).map(card => {
+    const name = card.querySelector(".guest-name")?.value.trim() || "";
+    const meal = card.querySelector(".guest-meal")?.value || "";
+    const allergy = card.querySelector(".guest-allergy")?.value.trim() || "";
+
+    return {
+      name,
+      type: card.dataset.guestType || "adult",
+      meal,
+      allergy
+    };
+  }).filter(guest => guest.name || guest.meal || guest.allergy);
+}
+
+adultsCountInput.addEventListener("input", renderNameInputs);
+childrenCountInput.addEventListener("input", renderNameInputs);
+renderNameInputs();
+applyPackageSettings();
+loadProjectSettings();
+
+form.addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  successBox.style.display = "none";
+  errorBox.style.display = "none";
+
+  if (!PROJECT_ID) {
+    errorBox.textContent = "Chýba project_id v URL adrese. Skontrolujte link na RSVP formulár.";
+    errorBox.style.display = "block";
+    return;
+  }
+
+  const attending = document.getElementById("attending").value === "true";
+  const adultsCount = Number(adultsCountInput.value || 0);
+  const childrenCount = Number(childrenCountInput.value || 0);
+  const adultNames = getValues(".adult-name");
+  const childrenNames = getValues(".child-name");
+
+  if (attending && adultNames.length < adultsCount) {
+    errorBox.textContent = "Prosíme, vyplňte mená všetkých dospelých hostí.";
+    errorBox.style.display = "block";
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Odosielam...";
+
+  const guestDetails = attending ? getGuestDetails() : null;
+  const mealSummary = Array.isArray(guestDetails)
+    ? guestDetails.map(guest => `${guest.name}: ${guest.meal || "bez výberu"}`).join("; ")
+    : "";
+  const allergySummary = Array.isArray(guestDetails)
+    ? guestDetails.filter(guest => guest.allergy).map(guest => `${guest.name}: ${guest.allergy}`).join("; ")
+    : "";
+
+  const payload = {
+    project_id: PROJECT_ID,
+    guest_name: adultNames[0] || "",
+    attending: attending,
+    adults_count: attending ? adultsCount : 0,
+    children_count: attending ? childrenCount : 0,
+    adult_names: adultNames.join(", "),
+    children_names: childrenNames.join(", "),
+    needs_accommodation: packageType === "essential" ? false : document.getElementById("needsAccommodation").checked,
+    needs_transport: packageType === "essential" ? false : document.getElementById("needsTransport").checked,
+    meal_choice: packageType === "essential" ? "" : mealSummary,
+    allergies: packageType === "essential" ? "" : allergySummary,
+    guest_details: guestDetails,
+    note: document.getElementById("note").value
+  };
+
+  const { error } = await supabaseClient
+    .from("rsvp_responses")
+    .insert([payload]);
+
+  if (error) {
+    console.error(error);
+    errorBox.textContent = "Nepodarilo sa odoslať RSVP. Skontrolujte nastavenia Supabase alebo to skúste znova.";
+    errorBox.style.display = "block";
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Odoslať potvrdenie";
+    return;
+  }
+
+  form.reset();
+  adultsCountInput.value = 1;
+  childrenCountInput.value = 0;
+  renderNameInputs();
+
+  successBox.style.display = "block";
+  submitBtn.textContent = "Odoslané";
+});
+</script>
+
+</body>
+</html>
